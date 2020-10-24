@@ -1,0 +1,193 @@
+package cn.com.avatek.pole.module.upgrade;
+
+import android.app.NotificationManager;
+import android.app.Service;
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Environment;
+import android.os.Handler;
+import android.os.IBinder;
+import android.os.Looper;
+import android.os.Message;
+import android.support.v4.app.NotificationCompat;
+import android.widget.Toast;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
+import cn.com.avatek.pole.R;
+
+
+public class VersionService extends Service {
+	public static boolean IS_DOWNLOADING = false;
+	private static int ID = 0x000098;
+	public static String FILENAME = "sqClass.apk";
+	public static String KEY_DOWNLOAD_URL = "downLoadUrl";
+
+	private static final int RESULT_ERROR = -0x0001;
+	private static final int RESULT_LOADING = 0x0001;
+	private static final int RESULT_DOWNLOAD_SUSS = 0x0002;
+
+	private NotificationManager notificationMrg;
+	private int old_process;
+	private NotificationCompat.Builder builder;
+	private String downLoadUrl = null;
+
+	public void onCreate() {
+		super.onCreate();
+		mHandler.handleMessage(new Message());
+		notificationMrg = (NotificationManager) getSystemService(android.content.Context.NOTIFICATION_SERVICE);
+
+	}
+
+	@Override
+	public int onStartCommand(Intent intent, int flags, int startId) {
+		try {
+			if (intent == null) {
+				stopSelf();
+				return Service.START_STICKY_COMPATIBILITY;
+			}
+			downLoadUrl = intent.getStringExtra(KEY_DOWNLOAD_URL);
+			if (downLoadUrl != null && downLoadUrl.length() > 0) {
+				downloadAPK(downLoadUrl);
+			} else {
+				Handler handler = new Handler(Looper.getMainLooper());
+				handler.post(new Runnable() {
+					public void run() {
+						Toast.makeText(getApplicationContext(), "版本升级下载地址不正确!", Toast.LENGTH_SHORT).show();
+						stopSelf();
+					}
+				});
+			}
+
+		} catch (Exception e) {
+		}
+		return super.onStartCommand(intent, flags, startId);
+	}
+
+	private Handler mHandler = new Handler() {
+		@Override
+		public void handleMessage(Message msg) {
+			if (!Thread.currentThread().isInterrupted()) {
+				switch (msg.what) {
+				case RESULT_LOADING:
+					displayNotificationMessage(msg.arg1);
+					if (msg.arg1 > 99) {
+						displayNotificationMessage(100);
+						notificationMrg.cancel(ID);
+						stopSelf();
+						return;
+					}else {
+					}
+					break;
+				case RESULT_DOWNLOAD_SUSS:
+					displayNotificationMessage(100);
+					Intent intent = new Intent(Intent.ACTION_VIEW);
+					intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+					intent.setDataAndType(Uri.fromFile(new File(Environment.getExternalStorageDirectory(), FILENAME)), "application/vnd.android.package-archive");
+					VersionService.this.startActivity(intent);
+					break;
+
+				case RESULT_ERROR:
+					String error = msg.getData().getString("error");
+					Handler handler = new Handler(Looper.getMainLooper());
+					handler.post(new Runnable() {
+						public void run() {
+							Toast.makeText(getApplicationContext(), getString(R.string.download_dialog_unkownerror_msg), Toast.LENGTH_SHORT).show();
+							stopSelf();
+						}
+					});
+					stopSelf();
+					break;
+				}
+			}
+		}
+	};
+
+	@Override
+	public void onDestroy() {
+		super.onDestroy();
+	}
+
+	private void displayNotificationMessage(int count) {
+		builder = new NotificationCompat.Builder(VersionService.this).setSmallIcon(R.drawable.icon).setContentTitle(getString(R.string.app_name)).setContentText("下载进度 : " + count + "%");
+		builder.setAutoCancel(true);
+		builder.setProgress(100, count, false);
+		notificationMrg.notify(0, builder.build());
+	}
+
+	/**
+	 * 下载APK
+	 * 
+	 * @param url
+	 */
+	private void downloadAPK(final String url) {
+		new Thread() {
+			public void run() {
+				loadFile(url);
+			}
+		}.start();
+	}
+
+	/**
+	 * 发送消息。。进度有变化的时候才发送消息
+	 * 
+	 * @param resultCode
+	 * @param process
+	 */
+	private void sendMsg(int resultCode, int process) {
+		if (resultCode == RESULT_LOADING) {
+			if (old_process == process) {
+				return;
+			}
+			old_process = process;
+		}
+		Message msg = mHandler.obtainMessage();
+		msg.what = resultCode;
+		msg.arg1 = process;
+		mHandler.sendMessage(msg);
+	}
+
+	public void loadFile(String url) {
+		try {
+			URL url2 = new URL(url);
+			HttpURLConnection connection = (HttpURLConnection) url2.openConnection();
+			connection.setConnectTimeout(3000);
+			connection.setDoInput(true);
+			connection.setRequestMethod("GET");
+			int code = connection.getResponseCode();
+			if (code == 200) {
+				InputStream is = connection.getInputStream();
+				float length = connection.getContentLength();
+				FileOutputStream fileOutputStream = null;
+				if (is != null) {
+					File file = new File(Environment.getExternalStorageDirectory(), FILENAME);
+					fileOutputStream = new FileOutputStream(file);
+					byte[] buf = new byte[1024];
+					int ch = -1;
+					float count = 0;
+					while ((ch = is.read(buf)) != -1) {
+						fileOutputStream.write(buf, 0, ch);
+						count += ch;
+						sendMsg(RESULT_LOADING, (int) (count * 100 / length));
+					}
+				}
+				sendMsg(RESULT_DOWNLOAD_SUSS, 0);
+				fileOutputStream.flush();
+				if (fileOutputStream != null) {
+					fileOutputStream.close();
+				}
+			}
+		} catch (Exception e) {
+			sendMsg(RESULT_ERROR, 0);
+		}
+	}
+
+	@Override
+	public IBinder onBind(Intent intent) {
+		return null;
+	}
+}

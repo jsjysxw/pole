@@ -1,0 +1,169 @@
+package cn.com.avatek.pole.manage;
+
+import com.google.gson.Gson;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.StringCallback;
+
+import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
+
+import cn.com.avatek.pole.entity.NetResult;
+import cn.com.avatek.pole.utils.HLog;
+import okhttp3.Call;
+
+/**
+ * Created by shenxw on 2017/1/18.
+ * okhttp针对api的封装类
+ */
+
+public class NetManager {
+
+    private static final String TAG = "NetManager";
+
+    public static void sendPost(final String url, Map<String, String> params, final NetCallBack netCallBack) {
+        if (params == null) {
+            params = new HashMap<>();
+        }
+
+        OkHttpUtils
+                .post()
+                .url(url)
+                .params(params)
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Call call, Exception e, int id) {
+                        netCallBack.onError("error:"+e.getMessage(), call);
+                        HLog.e(TAG,""+call.request().toString());
+                    }
+
+                    @Override
+                    public void onResponse(String response, int id) {
+                        HLog.w(TAG,"sendPost="+response);
+                        HLog.w(TAG,"sendPost="+url);
+                        if (response != null && !response.equals("") && (response.startsWith("{") || response.startsWith("["))) {
+                            Gson gson = new Gson();
+//                            WebDataObject webObj = gson.fromJson(response, WebDataObject.class);
+//                            if (webObj.getSuccess() == 1) {
+//                                netCallBack.onSuccess(gson.toJson(webObj.getData()));
+//                                HLog.e(TAG,"sendPost="+gson.toJson(webObj.getData()));
+//                            } else {
+//                                netCallBack.onError(webObj.getMsg(), null);
+//                            }
+                            NetResult webObj = gson.fromJson(response, NetResult.class);
+
+                                netCallBack.onSuccess(response);
+                                HLog.e(TAG,"sendPost="+gson.toJson(webObj.getData()));
+                        } else {
+                            netCallBack.onError("返回的数据为空或格式不对！", null);
+                        }
+                    }
+                });
+    }
+
+    public static void sendFile(String url, Map<String, String> params, File file, final NetCallBack netCallBack) {
+        if (params == null) {
+            params = new HashMap<>();
+        }
+        OkHttpUtils
+                .post()
+                .addFile("file", file.getName(), file)
+                .url(url)
+                .params(params)
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Call call, Exception e, int id) {
+                        netCallBack.onError(e.getMessage(), call);
+                    }
+
+                    @Override
+                    public void onResponse(String response, int id) {
+                        HLog.w(TAG,"sendFile="+response);
+                        if (response != null && !response.equals("") && (response.startsWith("{") || response.startsWith("["))) {
+                            Gson gson = new Gson();
+//                            WebDataObject webObj = gson.fromJson(response, WebDataObject.class);
+//                            if (webObj.getSuccess() == 1) {
+//                                netCallBack.onSuccess(gson.toJson(webObj.getData()));
+//                            } else {
+//                                netCallBack.onError(webObj.getMsg(), null);
+//                            }
+                            NetResult webObj = gson.fromJson(response, NetResult.class);
+                            if (webObj.getState() == 1) {
+                                netCallBack.onSuccess(gson.toJson(webObj.getData()));
+                            } else {
+                                netCallBack.onError(webObj.getMsg(), null);
+                            }
+                        } else {
+                            netCallBack.onError("返回的数据为空或格式不对！", null);
+                        }
+                    }
+                });
+    }
+
+    public static void sendGet(String url,String prama,final NetCallBack netCallBack) {
+        Map<String, String> params = new HashMap<>();
+        OkHttpUtils
+                .post()
+                .url(url+prama)
+                .params(params)
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Call call, Exception e, int id) {
+                        netCallBack.onError(e.getMessage(), call);
+                    }
+
+                    @Override
+                    public void onResponse(String response, int id) {
+                        HLog.w(TAG,"sendGet="+response);
+                        if (response != null && !response.equals("")) {
+                            netCallBack.onSuccess(response);
+                        } else {
+                            netCallBack.onError("返回的数据为空或格式不对！", null);
+                        }
+                    }
+                });
+    }
+
+    public static void sendNoSnPost(String url, Map<String, String> params,final NetCallBack netCallBack) {
+        if (params == null) {
+            params = new HashMap<>();
+        }
+        OkHttpUtils
+                .post()
+                .url(url)
+                .params(params)
+                .build()
+                .execute(new StringCallback() {
+                    @Override
+                    public void onError(Call call, Exception e, int id) {
+                        netCallBack.onError(e.getMessage(), call);
+                    }
+
+                    @Override
+                    public void onResponse(String response, int id) {
+                        HLog.w(TAG,"sendNoSnPost="+response);
+                        if (response != null && !response.equals("") && (response.startsWith("{") || response.startsWith("["))) {
+                            Gson gson = new Gson();
+//                            WebDataObject webObj = gson.fromJson(response, WebDataObject.class);
+//                            if (webObj.getSuccess() == 1) {
+//                                netCallBack.onSuccess(gson.toJson(webObj.getData()));
+//                            } else {
+//                                netCallBack.onError(webObj.getMsg(), null);
+//                            }
+                            NetResult webObj = gson.fromJson(response, NetResult.class);
+                            if (webObj.getState() == 1) {
+                                netCallBack.onSuccess(gson.toJson(webObj.getData()));
+                            } else {
+                                netCallBack.onError(webObj.getMsg(), null);
+                            }
+                        } else {
+                            netCallBack.onError("返回的数据为空或格式不对！", null);
+                        }
+                    }
+                });
+    }
+
+}

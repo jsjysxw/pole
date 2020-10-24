@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipChildren="false"
+    >
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/title_head_height">
+    </android.support.v4.view.ViewPager>
+
+        <RadioGroup
+            android:layout_alignParentBottom="true"
+            android:id="@+id/tab_menu"
+            android:layout_width="fill_parent"
+            android:layout_height="50dp"
+            android:background="#F7F8F9"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/tab_home"
+                style="@style/tab_rb_style"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:checked="false"
+                android:textSize="@dimen/mid_font"
+                android:textColor="@drawable/main_home_text"
+                android:drawableTop="@drawable/main_zy"
+                android:text="首页" />
+
+            <RadioButton
+                android:id="@+id/tab_notice"
+                style="@style/tab_rb_style"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:textSize="@dimen/mid_font"
+                android:textColor="@drawable/main_home_text"
+                android:drawableTop="@drawable/main_xx"
+                android:text="地图" />
+
+            <RadioButton
+                android:id="@+id/tab_campus"
+                style="@style/tab_rb_style"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:textSize="@dimen/mid_font"
+                android:textColor="@drawable/main_home_text"
+                android:drawableTop="@drawable/main_xy"
+                android:text="公告" />
+
+            <RadioButton
+                android:id="@+id/tab_person"
+                style="@style/tab_rb_style"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:textSize="@dimen/mid_font"
+                android:textColor="@drawable/main_home_text"
+                android:drawableTop="@drawable/main_grzx"
+                android:text="我的" />
+
+        </RadioGroup>
+</RelativeLayout>
+</LinearLayout>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="8dp">
+                <TextView
+                    android:id="@+id/tv_title1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="中外历史文人"
+                    android:textSize="15sp"
+                    android:singleLine="true"
+                    android:maxWidth="150dp"
+                    android:ellipsize="end"
+
+                    />
+                <TextView
+                    android:id="@+id/tv_time1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="点击输入数量"
+                    android:layout_alignParentRight="true"
+                    android:textSize="15sp"
+                    android:textColor="@color/darkgray"
+                    />
+            </RelativeLayout>
+</LinearLayout>

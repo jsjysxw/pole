@@ -1,0 +1,239 @@
+package cn.com.avatek.xinhuabookstore.entity;
+
+/**
+ * Created by shenxw on 2017/2/6.
+ */
+
+import java.util.List;
+
+/**
+ *
+ CommonJson<UploadimgRes> cj2 = CommonJson.fromJson(response,
+ UploadimgRes.class);
+ UploadimgRes uploadimg = cj2.getData();
+
+ CommonJsonList<SpinnerEntity> list = CommonJsonList.fromJson(response, SpinnerEntity.class);
+ if (list != null && list.getData() != null) {
+ provinceData = list.getData();
+ }
+ *
+ */
+
+public class DataResult<T> {
+    private int now_page;
+    private int total;
+    private int code;
+    private int aid;
+    private String id;
+    private String customer_name;
+    private String name;
+    private String path;
+    private String url;
+    private String ticket;
+    private String info;
+    private List<T> ls;
+    private int uid;
+    private String username;
+    private String nickname;
+    private int company_id;
+    private String company_name;
+    private String balance;
+    private String user_no;
+    private String group;
+    private String sn;
+    private int sex;
+    private String avatar;
+    private String mobile;
+
+    public int getUid() {
+        return uid;
+    }
+
+    public void setUid(int uid) {
+        this.uid = uid;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public int getCompany_id() {
+        return company_id;
+    }
+
+    public void setCompany_id(int company_id) {
+        this.company_id = company_id;
+    }
+
+    public String getCompany_name() {
+        return company_name;
+    }
+
+    public void setCompany_name(String company_name) {
+        this.company_name = company_name;
+    }
+
+    public String getGroup() {
+        return group;
+    }
+
+    public void setGroup(String group) {
+        this.group = group;
+    }
+
+    public String getSn() {
+        return sn;
+    }
+
+    public void setSn(String sn) {
+        this.sn = sn;
+    }
+
+    public int getSex() {
+        return sex;
+    }
+
+    public void setSex(int sex) {
+        this.sex = sex;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+
+    public int getNow_page() {
+        return now_page;
+    }
+
+    public void setNow_page(int now_page) {
+        this.now_page = now_page;
+    }
+
+    public int getTotal() {
+        return total;
+    }
+
+    public void setTotal(int total) {
+        this.total = total;
+    }
+
+    public int getCode() {
+        return code;
+    }
+
+    public void setCode(int code) {
+        this.code = code;
+    }
+
+    public int getAid() {
+        return aid;
+    }
+
+    public void setAid(int aid) {
+        this.aid = aid;
+    }
+
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public String getTicket() {
+        return ticket;
+    }
+
+    public void setTicket(String ticket) {
+        this.ticket = ticket;
+    }
+
+    public String getInfo() {
+        return info;
+    }
+
+    public void setInfo(String info) {
+        this.info = info;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
+    public String getMobile() {
+        return mobile;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
+    }
+
+    public String getUser_no() {
+        return user_no;
+    }
+
+    public void setUser_no(String user_no) {
+        this.user_no = user_no;
+    }
+
+    public String getBalance() {
+        return balance;
+    }
+
+    public void setBalance(String balance) {
+        this.balance = balance;
+    }
+
+    public List<T> getLs() {
+        return ls;
+    }
+
+    public void setLs(List<T> ls) {
+        this.ls = ls;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getCustomer_name() {
+        return customer_name;
+    }
+
+    public void setCustomer_name(String customer_name) {
+        this.customer_name = customer_name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+}

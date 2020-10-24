@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/title_head_height"
+    android:background="@color/theme_color"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+
+    <ImageView
+        android:layout_width="@dimen/btn_dimen"
+        android:layout_height="wrap_content"
+        android:paddingTop="13dp"
+        android:paddingLeft="8dp"
+        android:paddingBottom="13dp"
+
+        android:gravity="center"
+        android:id="@+id/back"
+        android:src="@drawable/back" />
+
+
+
+    <View
+        android:layout_width="1px"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="#fff"
+        android:layout_gravity="center"
+        android:layout_centerInParent="true"
+        android:layout_toLeftOf="@+id/submit"
+        android:id="@+id/title_bar_line"
+        />
+
+    <Button
+
+        style="@style/titleright"
+        android:text="筛选"
+        android:id="@+id/submit"
+        android:layout_centerVertical="true"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_height="match_parent"
+        style="@style/title"
+        android:text="任务列表"
+        android:singleLine="true"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:id="@+id/titlebar_title"
+        android:paddingLeft="@dimen/dimen_60"
+        android:paddingRight="@dimen/dimen_60"
+        android:layout_centerInParent="true" />
+</RelativeLayout>

@@ -1,0 +1,73 @@
+10
+
+dir
+1117
+svn://xieweishen@www.dayo.net.cn/svn_project/community/android/community/app/src/main/res
+svn://xieweishen@www.dayo.net.cn/svn_project
+
+
+
+2020-08-19T01:45:01.217923Z
+1046
+xieweishen
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+b3af244b-6a3e-4971-aac7-0959a505ed1a
+
+mipmap-anydpi-v26
+dir
+
+drawable
+dir
+
+anim
+dir
+
+mipmap-xxhdpi
+dir
+
+drawable-v24
+dir
+
+mipmap-xhdpi
+dir
+
+values-sw320dp
+dir
+
+values
+dir
+
+values-sw600dp
+dir
+
+values-sw720dp
+dir
+
+drawable-hdpi
+dir
+
+mipmap-hdpi
+dir
+
+mipmap-mdpi
+dir
+
+mipmap-xxxhdpi
+dir
+
+layout
+dir
+

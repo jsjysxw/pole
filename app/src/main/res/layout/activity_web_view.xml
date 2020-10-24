@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" 
+    android:background="@color/white">
+    
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/theme_color" >
+
+        <LinearLayout
+            android:id="@+id/ll_sales_list_back"
+            android:layout_width="@dimen/btn_dimen"
+            android:layout_height="match_parent"
+            android:background="@drawable/btn_bg"
+            android:gravity="center" >
+
+            <!--<ImageView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:src="@drawable/back" />-->
+            <TextView
+                style="@style/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:ellipsize="end"
+                android:maxWidth="180dp"
+                android:textSize="15sp"
+                android:maxLines="1"
+                android:text="退出" />
+        </LinearLayout>
+
+        <TextView
+            style="@style/title"
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:ellipsize="end"
+            android:maxWidth="180dp"
+            android:maxLines="1"
+            android:text="规则" />
+
+    </RelativeLayout>
+    
+    <WebView 
+        android:id="@+id/wv_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</LinearLayout>

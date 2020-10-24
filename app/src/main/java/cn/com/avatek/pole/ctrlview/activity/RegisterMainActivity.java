@@ -1,0 +1,250 @@
+package cn.com.avatek.pole.ctrlview.activity;
+
+import android.app.Dialog;
+import android.content.Intent;
+import android.os.Build;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.gson.Gson;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import cn.com.avatek.pole.R;
+import cn.com.avatek.pole.constant.ApiAddress;
+import cn.com.avatek.pole.constant.Constant;
+import cn.com.avatek.pole.ctrlview.customview.TitleBarView;
+import cn.com.avatek.pole.entity.DepResult;
+import cn.com.avatek.pole.entity.RegisterResult;
+import cn.com.avatek.pole.manage.NetCallBack;
+import cn.com.avatek.pole.manage.NetManager;
+import cn.com.avatek.pole.utils.AvatekDialog;
+import cn.com.avatek.pole.utils.HLog;
+import cn.com.avatek.pole.utils.IDropdownItemClickListener;
+import cn.com.avatek.pole.utils.SharedPreferenceUtil;
+import cn.com.avatek.pole.utils.TypePopupwindow;
+import okhttp3.Call;
+
+
+/**
+ * Created by User on 2015/4/29.
+ */
+public class RegisterMainActivity extends BaseActivity implements View.OnClickListener {
+
+    private EditText et_name, et_tel, et_psd, et_psd_a,et_identity;
+    private Button btn_register;
+    private TextView tv_sex,tv_area;
+
+    private TitleBarView title_bar;
+
+    private String sex = "0";
+    private LinearLayout ll_sex;
+    private  List<DepResult.ContentBean> beans = new ArrayList<>();
+    private String area_id = "";
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        //在使用SDK各组件之前初始化context信息，传入ApplicationContext
+        //注意该方法要再setContentView方法之前实现
+        setContentView(R.layout.activity_register);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            setStatusLine();
+        }
+        title_bar = (TitleBarView) findViewById(R.id.title_bar);
+        title_bar.setActivity(RegisterMainActivity.this);
+
+        Intent intent = getIntent();
+
+        initView();
+        initEvent();
+        initClass();
+    }
+
+    private void initEvent() {
+        btn_register.setOnClickListener(this);
+
+        tv_sex.setOnClickListener(this);
+        tv_area.setOnClickListener(this);
+    }
+
+    private void initView() {
+        et_name = (EditText) findViewById(R.id.et_name);
+        et_tel = (EditText) findViewById(R.id.et_tel);
+        et_psd = (EditText) findViewById(R.id.et_psd);
+        et_psd_a = (EditText) findViewById(R.id.et_psd_a);
+        et_identity = (EditText) findViewById(R.id.et_identity);
+        btn_register = (Button) findViewById(R.id.btn_register);
+        tv_sex = (TextView) findViewById(R.id.tv_sex);
+        tv_area = (TextView) findViewById(R.id.tv_area);
+
+        ll_sex = (LinearLayout) findViewById(R.id.ll_sex);
+
+    }
+
+    private void initWeb() {
+        final String name = et_name.getText().toString().trim();
+        final String tel = et_tel.getText().toString().trim();
+        final String psd = et_psd.getText().toString().trim();
+        final String psd_a = et_psd_a.getText().toString().trim();
+        final String identity = et_identity.getText().toString().trim();
+        final String tvarea = tv_area.getText().toString().trim();
+
+
+        if (name.equals("")) {
+            Toast.makeText(this, "姓名不能为空", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (tel.equals("")) {
+            Toast.makeText(this, "电话不能为空", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (psd.equals("") || psd_a.equals("")) {
+            Toast.makeText(this, "密码不能为空", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (!psd.equals(psd_a)) {
+            Toast.makeText(this, "密码不一致", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (identity.equals("")) {
+            Toast.makeText(this, "身份证不能为空", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (tvarea.equals("")) {
+            Toast.makeText(this, "社区不能为空", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+
+        final Dialog dialog = AvatekDialog.createLoadingDialog(RegisterMainActivity.this,
+                "注册中...");
+        dialog.show();
+        Map<String, String> params = new HashMap<>();
+        params.put("name", name);
+        params.put("tel", tel);
+        params.put("password", psd);
+        params.put("identity", identity);
+        params.put("sex", sex);
+        params.put("area_id", area_id);
+        HLog.e("webnet", "params=" + params.toString());
+        NetManager.sendPost(ApiAddress.login, params, new NetCallBack() {
+            @Override
+            public void onError(String error, Call call) {
+                HLog.e("webnet", "response=" + error);
+                Toast.makeText(RegisterMainActivity.this, "注册出错：" + error, Toast.LENGTH_SHORT).show();
+                dialog.dismiss();
+            }
+
+            @Override
+            public void onSuccess(String response) {
+                HLog.e("webnet", "response=" + response);
+                dialog.dismiss();
+                Gson gson = new Gson();
+                RegisterResult userResult = gson.fromJson(response, RegisterResult.class);
+                if ("1".equals(userResult.getState())) {
+                    Toast.makeText(RegisterMainActivity.this, "注册成功", Toast.LENGTH_SHORT).show();
+                    SharedPreferenceUtil.saveData(RegisterMainActivity.this, Constant.FILE_NAME, Constant.KEY_TEL, tel);
+                    SharedPreferenceUtil.saveData(RegisterMainActivity.this, Constant.FILE_NAME, Constant.KEY_PSD, psd);
+                    startActivity(new Intent(RegisterMainActivity.this, LoginMainActivity.class));
+                    finish();
+                } else {
+                    Toast.makeText(RegisterMainActivity.this, "注册出错：" + userResult.getReason(), Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+
+    @Override
+    public void onClick(View view) {
+        List<String> sList = new ArrayList<String>();
+        switch (view.getId()) {
+            case R.id.btn_register:
+                initWeb();
+                break;
+
+            case R.id.tv_sex:
+                sList.add("男");
+                sList.add("女");
+                showPopup(sList, tv_sex);
+                break;
+            case R.id.tv_area:
+                if(beans!=null&&beans.size()>0) {
+                    for (DepResult.ContentBean bean :
+                            beans) {
+                        sList.add(bean.getName());
+                    }
+
+                    showPopup(sList, tv_area);
+                }
+                break;
+
+            default:
+                break;
+
+        }
+    }
+
+
+    private void initClass() {
+        NetManager.sendGet(ApiAddress.login, "", new NetCallBack() {
+            @Override
+            public void onError(String error, Call call) {
+                HLog.e("webnet", "response=" + error);
+            }
+
+            @Override
+            public void onSuccess(String response) {
+                HLog.e("webnet", "response=" + response);
+
+                Gson gson = new Gson();
+                DepResult listResult = gson.fromJson(response, DepResult.class);
+                if (listResult != null && listResult.getContent() != null && listResult.getContent().size() > 0) {
+                    beans =  listResult.getContent();
+                }
+            }
+        });
+    }
+
+
+    private TypePopupwindow popup;
+
+    private void showPopup(List<String> sList, final TextView tv) {
+
+        int[] location = new int[2];
+        tv.getLocationInWindow(location);
+        location[1] += tv.getHeight();
+        popup = new TypePopupwindow(RegisterMainActivity.this, sList);
+        popup.showAt(location, tv.getWidth(), tv.getHeight(), false);
+        popup.setItemClickListener(new IDropdownItemClickListener() {
+
+            @Override
+            public void onItemClick(String text, int position) {
+                tv.setText(text);
+                switch (tv.getId()) {
+                    case R.id.tv_sex:
+                        sex = String.valueOf(position);
+                        break;
+                    case R.id.tv_area:
+                        if(beans!=null&&beans.size()>position) {
+                            area_id = beans.get(position).getArea_id();
+                        }
+                        break;
+                    default:
+                        break;
+
+                }
+
+            }
+        });
+    }
+
+}

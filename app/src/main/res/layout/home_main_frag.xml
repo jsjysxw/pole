@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <RelativeLayout
+        android:id="@+id/head_view"
+        android:layout_width="fill_parent"
+        android:layout_height="200dp"
+        android:background="@color/gray_btn_bg_color"
+        >
+        <!-- 自动滑动gallery -->
+        <cn.com.avatek.pole.ctrlview.customview.AutoGallery
+            android:id="@+id/headline_image_gallery"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:fadingEdge="none"
+            android:fadingEdgeLength="0dp"
+            android:soundEffectsEnabled="false" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/transparent">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:alpha="0.6"
+                android:background="@null">
+                <!--android:background="@color/black"-->
+                <TextView
+                    android:id="@+id/advice_title"
+                    android:visibility="gone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="24dp"
+                    android:text="欢迎进入......"
+                    android:textColor="@color/white"
+                    android:textSize="13sp" />
+                <!-- 滑动图片的指示器 -->
+                <cn.com.avatek.pole.ctrlview.customview.FlowIndicator
+                    android:id="@+id/headline_circle_indicator"
+                    android:layout_width="200dp"
+                    android:layout_height="13dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginBottom="9dp"
+                    android:layout_marginRight="5dp"
+                    app:indicator_radius="4dp"
+                    app:space="5dp" />
+
+
+            </RelativeLayout>
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <include layout="@layout/main_middle_home" />
+
+</LinearLayout>

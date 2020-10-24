@@ -1,0 +1,109 @@
+package cn.com.avatek.pole.ctrlview.customview;
+
+import android.app.Activity;
+import android.content.Context;
+import android.content.res.TypedArray;
+import android.util.AttributeSet;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import cn.com.avatek.pole.R;
+
+
+/**
+ * 
+ */
+public class TitleBarView extends LinearLayout {
+
+    private Button btnSubmit;
+    private TextView tvTitle;
+    private Activity activity;
+    private ImageView btnBack;
+    private View viewLine;
+
+    public TitleBarView(Context context) {
+        super(context);
+        init();
+    }
+
+    public TitleBarView(Context context, AttributeSet attrs) {
+        super(context, attrs);
+        init();
+        initStyleable(attrs);
+    }
+
+    public TitleBarView(Context context, AttributeSet attrs, int defStyle) {
+        super(context, attrs, defStyle);
+        init();
+        initStyleable(attrs);
+    }
+
+    private void init(){
+        View.inflate(getContext(), R.layout.view_title_bar,this);
+        tvTitle = (TextView) findViewById(R.id.titlebar_title);
+        btnSubmit = (Button) findViewById(R.id.submit);
+        btnBack = (ImageView) findViewById(R.id.back);
+        btnBack.setOnClickListener(backOnClick);
+        viewLine = findViewById(R.id.title_bar_line);
+    }
+    private void initStyleable(AttributeSet attrs){
+        TypedArray typedArray = getContext().obtainStyledAttributes(attrs, R.styleable.TitleBarView);
+        boolean submitV = typedArray.getBoolean(R.styleable.TitleBarView_right_bar_visible, true);
+        boolean submitVL = typedArray.getBoolean(R.styleable.TitleBarView_left_bar_visible, true);
+        String strTitle = typedArray.getString(R.styleable.TitleBarView_bar_title);
+        String rightTitle = typedArray.getString(R.styleable.TitleBarView_right_bar_title);
+        tvTitle.setText(strTitle);
+        btnSubmit.setText(rightTitle);
+
+        setSubmitVisibility(submitV);
+        setBackVisibility(submitVL);
+
+
+    }
+    public void setTitle(String title){
+        tvTitle.setText(title);
+    }
+
+
+    public Button getBtnSubmit() {
+        return btnSubmit;
+    }
+
+    public void setActivity(Activity activity) {
+        this.activity = activity;
+    }
+
+    private OnClickListener backOnClick=new OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            if(activity!=null){
+                activity.finish();
+            }
+        }
+    };
+
+    public void setSubmitVisibility(boolean visible){
+        if (visible){
+            btnSubmit.setVisibility(VISIBLE);
+            viewLine.setVisibility(VISIBLE);
+        }else{
+            btnSubmit.setVisibility(INVISIBLE);
+            viewLine.setVisibility(INVISIBLE);
+        }
+    }
+
+    public void setBackVisibility(boolean visible){
+        if (visible){
+            btnBack.setVisibility(VISIBLE);
+        }else{
+            btnBack.setVisibility(GONE);
+        }
+    }
+
+    public ImageView getBtnBack() {
+        return btnBack;
+    }
+}

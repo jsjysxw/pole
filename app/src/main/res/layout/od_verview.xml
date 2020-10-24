@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="5dp">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:maxLength="10"
+            android:singleLine="true"
+            android:text="最新音频"
+            />
+        <LinearLayout
+            android:id="@+id/ll_more"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                android:text="更多"
+                />
+            <ImageView
+                android:id="@+id/iv_more"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:src="@drawable/iv_more"
+                android:layout_marginLeft="2dp"
+                android:scaleType="fitCenter"
+                />
+        </LinearLayout>
+
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+
+        <LinearLayout
+            android:id="@+id/tab_1"
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            >
+            <RelativeLayout
+                android:id="@+id/head_view1"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_margin="8dp">
+                <ImageView
+                    android:id="@+id/iv1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_music"
+                    android:scaleType="fitCenter"
+                    />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_alignParentBottom="true"
+                    android:background="@color/transparent">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:alpha="0.5"
+                        android:background="@color/black">
+
+                        <ImageView
+                            android:id="@+id/play_num1"
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="6dp"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/play"/>
+                        <TextView
+                            android:id="@+id/tv_num1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:text="15K"
+                            android:layout_toRightOf="@+id/play_num1"
+                            android:textColor="@color/white"
+                            android:textSize="12sp" />
+
+
+
+                    </RelativeLayout>
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/tv_con1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="中外历史文人"
+                android:textSize="13sp"
+                android:maxLines="2"
+                android:ellipsize="end"
+                android:textColor="@color/darkgray"
+                />
+
+            <LinearLayout
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+                <ImageView
+
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/index_investbtn_bg"/>
+                <TextView
+                    android:id="@+id/ledou1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:text="3乐豆"
+                    android:textColor="@color/darkgray"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/tab_2"
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            >
+            <RelativeLayout
+                android:id="@+id/head_view2"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_margin="8dp">
+                <ImageView
+                    android:id="@+id/iv2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_music"
+                    android:scaleType="fitCenter"
+                    />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_alignParentBottom="true"
+                    android:background="@color/transparent">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:alpha="0.5"
+                        android:background="@color/black">
+
+                        <ImageView
+                            android:id="@+id/play_num2"
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="6dp"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/play"/>
+                        <TextView
+                            android:id="@+id/tv_num2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:text="15K"
+                            android:layout_toRightOf="@+id/play_num2"
+                            android:textColor="@color/white"
+                            android:textSize="12sp" />
+
+
+
+                    </RelativeLayout>
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/tv_con2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="中外历史文人"
+                android:textSize="13sp"
+                android:maxLines="2"
+                android:ellipsize="end"
+                android:textColor="@color/darkgray"
+                />
+
+            <LinearLayout
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+                <ImageView
+
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/index_investbtn_bg"/>
+                <TextView
+                    android:id="@+id/ledou2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:text="3乐豆"
+                    android:textColor="@color/darkgray"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/tab_3"
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            >
+            <RelativeLayout
+                android:id="@+id/head_view3"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_margin="8dp">
+                <ImageView
+                    android:id="@+id/iv3"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_music"
+                    android:scaleType="fitCenter"
+                    />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_alignParentBottom="true"
+                    android:background="@color/transparent">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:alpha="0.5"
+                        android:background="@color/black">
+
+                        <ImageView
+                            android:id="@+id/play_num3"
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="6dp"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/play"/>
+                        <TextView
+                            android:id="@+id/tv_num3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:text="15K"
+                            android:layout_toRightOf="@+id/play_num3"
+                            android:textColor="@color/white"
+                            android:textSize="12sp" />
+
+
+
+                    </RelativeLayout>
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/tv_con3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="中外历史文人"
+                android:textSize="13sp"
+                android:maxLines="2"
+                android:ellipsize="end"
+                android:textColor="@color/darkgray"
+                />
+
+            <LinearLayout
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+                <ImageView
+
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/index_investbtn_bg"/>
+                <TextView
+                    android:id="@+id/ledou3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:text="3乐豆"
+                    android:textColor="@color/darkgray"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

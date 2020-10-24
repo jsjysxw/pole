@@ -1,0 +1,91 @@
+package cn.com.avatek.xinhuabookstore.module.upgrade;
+
+import android.content.Context;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+
+public class UpdateUtils {
+
+	/**
+	 * 获取渠道信息
+	 * 
+	 * @param context
+	 * @return
+	 */
+	public static String getQudaoKey(Context context) {
+		String qudao = "";
+		try {
+			qudao = getMetaData(context, "UMENG_CHANNEL");
+			qudao = qudao.replaceAll("\\{", "");
+			qudao = qudao.replaceAll("\\}", "");
+		} catch (Exception e) {
+		}
+
+		if (qudao == null || qudao.length() == 0) {
+			qudao = "xinweibao";
+		}
+		return qudao;
+	}
+
+	/**
+	 * 获取广播名称
+	 * 
+	 * @param context
+	 * @return
+	 */
+	public static String getBroadcast(Context context) {
+		String broadcastName = "";
+		try {
+			broadcastName = getMetaData(context, "VERSION_UPGRADE_BROADCAST");
+			broadcastName = broadcastName.replaceAll("\\{", "");
+			broadcastName = broadcastName.replaceAll("\\}", "");
+		} catch (Exception e) {
+		}
+
+		if (broadcastName == null || broadcastName.length() == 0) {
+			broadcastName = "com.xwbclass.version.broadcast";
+		}
+		return broadcastName;
+	}
+
+	/**
+	 * 
+	 * @param context
+	 * @param key
+	 * @return
+	 */
+	private static String getMetaData(Context context, String key) {
+		if (context != null) {
+			try {
+				ApplicationInfo info = context.getPackageManager().getApplicationInfo(context.getPackageName(), PackageManager.GET_META_DATA);
+				String value = (String) info.metaData.get(key);
+				return value;
+			} catch (PackageManager.NameNotFoundException e) {
+				e.printStackTrace();
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * 当前版本code
+	 * 
+	 * @param context
+	 * @return
+	 */
+	public static int getVersionCode(Context context) {
+		PackageManager pm = context.getPackageManager();
+		PackageInfo info = null;
+		int versionCode = 0;
+		try {
+			info = pm.getPackageInfo(context.getPackageName(), 0);
+		} catch (PackageManager.NameNotFoundException e) {
+			e.printStackTrace();
+		}
+		if (info != null) {
+			versionCode = info.versionCode;
+		}
+		return versionCode;
+	}
+}

@@ -1,0 +1,131 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="btn_dimen">50dp</dimen>
+    <dimen name="select_dimen">50dp</dimen>
+    <dimen name="diameter">40dp</dimen>
+    <dimen name="optionTextSize">26sp</dimen>
+    <dimen name="imageHeight">280dp</dimen>
+
+    <dimen name="textSmallSize">20sp</dimen>
+    <dimen name="textSize">23sp</dimen>
+    <dimen name="textTitleSize">28sp</dimen>
+
+    <dimen name="title_head_height">50dp</dimen>
+
+    <dimen name="home_textSize">40sp</dimen>
+    <dimen name="home_imgSize">60dp</dimen>
+    <dimen name="home_head_height">70dp</dimen>
+
+
+    <!-- other 页面 -->
+    <dimen name="dimen_240">480dp</dimen>
+    <dimen name="dimen_200">400dp</dimen>
+    <dimen name="dimen_190">380dp</dimen>
+    <dimen name="dimen_180">360dp</dimen>
+    <dimen name="dimen_170">340dp</dimen>
+    <dimen name="dimen_160">320dp</dimen>
+    <dimen name="dimen_140">280dp</dimen>
+    <dimen name="dimen_120">240dp</dimen>
+    <dimen name="dimen_100">320dp</dimen>
+    <dimen name="dimen_90">180dp</dimen>
+    <dimen name="dimen_80">160dp</dimen>
+    <dimen name="dimen_70">140dp</dimen>
+    <dimen name="dimen_60">120dp</dimen>
+    <dimen name="dimen_51">102dp</dimen>
+    <dimen name="dimen_50">100dp</dimen>
+    <dimen name="dimen_40">80dp</dimen>
+    <dimen name="dimen_30">60dp</dimen>
+    <dimen name="dimen_20">40dp</dimen>
+    <dimen name="dimen_10">20dp</dimen>
+    <dimen name="dimen_0.5">1dp</dimen>
+    <dimen name="dimen_1">2dp</dimen>
+
+    <dimen name="textsize_32">64sp</dimen>
+    <dimen name="textsize_20">40sp</dimen>
+    <dimen name="textsize_16">32sp</dimen>
+    <dimen name="textsize_17">34sp</dimen>
+    <dimen name="textsize_18">36sp</dimen>
+    <dimen name="textsize_15">30sp</dimen>
+    <dimen name="textsize_14">28sp</dimen>
+    <dimen name="textsize_12">24sp</dimen>
+
+    <dimen name="margin_2">4dp</dimen>
+    <dimen name="margin_5">10dp</dimen>
+    <dimen name="margin_8">16dp</dimen>
+    <dimen name="margin_10">20dp</dimen>
+    <dimen name="margin_15">30dp</dimen>
+    <dimen name="margin_20">40dp</dimen>
+    <dimen name="margin_30">60dp</dimen>
+    <dimen name="margin_40">80dp</dimen>
+
+    <item name="size_20" type="dimen" format="float">40</item>
+    <item name="size_17" type="dimen" format="float">34</item>
+    <item name="size_16" type="dimen" format="float">32</item>
+    <item name="size_14" type="dimen" format="float">28</item>
+
+    <dimen name="size_17_phone">25sp</dimen>
+    <dimen name="size_14_phone">22sp</dimen>
+    <dimen name="size_13_phone">21sp</dimen>
+    <item name="size_15" type="dimen" format="float">22</item>
+    <dimen name="home_textSize11">13sp</dimen>
+
+    <dimen name="size_55_phone">-65dp</dimen>
+    <dimen name="size_50_phone">60dp</dimen>
+
+    <dimen name="miniTextSize">18sp</dimen>
+
+    <dimen name="margin_login_top">50dp</dimen>
+    <dimen name="margin_login_top2">26dp</dimen>
+    <dimen name="margin_login_top3">40dp</dimen>
+    <dimen name="logpading_login_topbottom">7dp</dimen>
+    <dimen name="home_bar_height">60dp</dimen>
+
+    <dimen name="loginTextSize">22sp</dimen>
+    <dimen name="margin_login_width">90dp</dimen>
+    <dimen name="margin_login_heigth">90dp</dimen>
+    <dimen name="margin_main_width">45dp</dimen>
+    <dimen name="main_magin_top">12dp</dimen>
+    <dimen name="margin_question_bottom">80dp</dimen>
+
+    <dimen name="main_magin_left">70dp</dimen>
+
+    <dimen name="left_main_padding">40dp</dimen>
+    <dimen name="margin_question_topbottom">15dp</dimen>
+    <dimen name="person_padding">25dp</dimen>
+    <dimen name="person_btn_padding">22dp</dimen>
+    <dimen name="person_another_padding">35dp</dimen>
+
+    <!--首页-->
+    <dimen name="advertisement_height">210dp</dimen>
+    <dimen name="mid_height">100dp</dimen>
+    <dimen name="mid_pic">55dp</dimen>
+    <dimen name="mid_to_pic">8dp</dimen>
+    <dimen name="mid_font">20sp</dimen>
+    <dimen name="mid_to_top">9dp</dimen>
+
+    <!--矩阵新加-->
+    <dimen name="size_matrrix250">125dp</dimen>
+    <dimen name="size_matrrix360">90dp</dimen>
+    <dimen name="size_matrrix18">25dp</dimen>
+    <integer name="text_size" >15</integer>
+    <dimen name="size_matrrix20">4dp</dimen>
+    <!--text padding-->
+    <dimen name="size_matrrix_textpading">7dp</dimen>
+    <!--text padding-->
+    <dimen name="size_matrrix_textleft">6dp</dimen>
+    <integer name="score" >123</integer>
+    <dimen name="size_matrrix60width">28dp</dimen>
+    <dimen name="size_matrrix60height">28dp</dimen>
+    <dimen name="size_matrrix16">16dp</dimen>
+    <integer name="size_matrrix4">4</integer>
+
+    <dimen name="size_matrrix10">16dp</dimen>
+
+    <!--图片大小宽度-->
+    <dimen name="size_matrrixwidth">22dp</dimen>
+    <!--图片大小高度-->
+    <dimen name="size_matrrixheight">22dp</dimen>
+</resources>

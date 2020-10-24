@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:orientation="vertical"
+    >
+    <cn.com.avatek.pole.ctrlview.customview.TitleBarView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:bar_title="创建线路点"
+        app:right_bar_title="提交"
+        app:right_bar_visible="true"
+        android:id="@+id/title_bar"
+        />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin">
+
+            <LinearLayout
+                android:id="@+id/mlayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    style="@style/mtask_ll"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="5dp">
+
+                    <TextView
+                        style="@style/mtask_textview"
+                        android:text="杆号" />
+
+                    <EditText
+                        android:id="@+id/num"
+                        style="@style/mtask_et" />
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/mtask_ll"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="5dp">
+
+                    <TextView
+                        style="@style/mtask_textview"
+                        android:text="距离" />
+
+                    <EditText
+                        android:id="@+id/dist"
+                        style="@style/mtask_et" />
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/mtask_ll"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="5dp">
+
+                    <TextView
+                        style="@style/mtask_textview"
+                        android:text="坐标x" />
+
+                    <EditText
+                        android:id="@+id/coorx"
+                        style="@style/mtask_et" />
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/mtask_ll"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="5dp">
+
+                    <TextView
+                        style="@style/mtask_textview"
+                        android:text="坐标y" />
+
+                    <EditText
+                        android:id="@+id/coory"
+                        style="@style/mtask_et" />
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/mtask_ll"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="5dp">
+
+                    <TextView
+                        style="@style/mtask_textview"
+                        android:text="跨越" />
+                    <TextView
+                        android:id="@+id/cross"
+                        style="@style/mtask_et"
+                        android:background="@drawable/btn_et"
+                        android:drawableRight="@drawable/xiala"
+                        android:text="河流" />
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/mtask_ll"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="5dp">
+
+                    <TextView
+                        style="@style/mtask_textview"
+                        android:text="电压" />
+                    <TextView
+                        android:id="@+id/voltage"
+                        style="@style/mtask_et"
+                        android:background="@drawable/btn_et"
+                        android:drawableRight="@drawable/xiala"
+                        android:text="220V" />
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/mtask_ll"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="5dp">
+
+                    <TextView
+                        style="@style/mtask_textview"
+                        android:text="电杆类型" />
+                    <TextView
+                        android:id="@+id/point_type"
+                        style="@style/mtask_et"
+                        android:background="@drawable/btn_et"
+                        android:drawableRight="@drawable/xiala"
+                        android:text="标准台架变" />
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/mtask_ll"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="5dp">
+
+                    <TextView
+                        style="@style/mtask_textview"
+                        android:text="备注" />
+
+                    <EditText
+                        android:id="@+id/rematks"
+                        style="@style/mtask_et" />
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/mtask_ll"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="5dp">
+
+                    <TextView
+                        style="@style/mtask_textview"
+                        android:text="上一级ID" />
+
+                    <TextView
+                        android:id="@+id/pid"
+                        style="@style/mtask_et"
+                        android:text="" />
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/mtask_ll"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="5dp">
+
+                    <TextView
+                        style="@style/mtask_textview"
+                        android:text="所属线路" />
+
+                    <TextView
+                        android:id="@+id/line_id"
+                        style="@style/mtask_et"
+                        android:text="" />
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/mtask_ll"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="5dp">
+
+                    <TextView
+                        style="@style/mtask_textview"
+                        android:text="材料" />
+                    <TextView
+                        android:id="@+id/materials"
+                        style="@style/mtask_et"
+                        android:background="@drawable/btn_et"
+                        android:drawableRight="@drawable/xiala"
+                        android:text="请选择" />
+                </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

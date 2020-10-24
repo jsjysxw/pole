@@ -1,0 +1,31 @@
+package cn.com.avatek.xinhuabookstore.entity;
+
+import java.util.List;
+
+public class RegisterResult {
+
+
+    /**
+     * state : 1
+     * content : []
+     * reason : 注册成功
+     */
+
+    private String state;
+    private String reason;
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public String getReason() {
+        return reason;
+    }
+
+    public void setReason(String reason) {
+        this.reason = reason;
+    }
+}

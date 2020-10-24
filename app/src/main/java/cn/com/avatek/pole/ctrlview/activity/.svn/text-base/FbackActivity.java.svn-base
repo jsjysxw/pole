@@ -1,0 +1,102 @@
+package cn.com.avatek.xinhuabookstore.ctrlview.activity;
+
+import android.app.Dialog;
+import android.os.Build;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.gson.Gson;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import cn.com.avatek.xinhuabookstore.R;
+import cn.com.avatek.xinhuabookstore.SvaApplication;
+import cn.com.avatek.xinhuabookstore.constant.ApiAddress;
+import cn.com.avatek.xinhuabookstore.entity.RegisterResult;
+import cn.com.avatek.xinhuabookstore.manage.NetCallBack;
+import cn.com.avatek.xinhuabookstore.manage.NetManager;
+import cn.com.avatek.xinhuabookstore.utils.AvatekDialog;
+import cn.com.avatek.xinhuabookstore.utils.HLog;
+import okhttp3.Call;
+
+public class FbackActivity extends BaseActivity {
+    private EditText etFbContent;
+    private Button btnFbOK,btnFbCancel;
+    private TextView tv_bar_left;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_fback);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            setStatusLine();
+        }
+        etFbContent = (EditText) findViewById(R.id.et_fb_content);
+        btnFbOK = (Button) findViewById(R.id.btn_fb_submit);
+        btnFbCancel = (Button) findViewById(R.id.btn_fb_cancel);
+        tv_bar_left = (TextView) findViewById(R.id.tv_bar_left);
+
+        btnFbCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FbackActivity.this.finish();
+            }
+        });
+        tv_bar_left.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FbackActivity.this.finish();
+            }
+        });
+        btnFbOK.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(etFbContent.getText().toString().equals(""))
+                    return;
+                submitFeedback();
+            }
+        });
+    }
+
+    private void submitFeedback(){
+
+        final Dialog dialog = AvatekDialog.createLoadingDialog(FbackActivity.this,
+                "处理中，请稍后...");
+        dialog.show();
+
+        Map<String, String> params = new HashMap<>();
+        params.put("user_id", SvaApplication.getInstance().getLoginUser().getId());
+        params.put("user_type_id", SvaApplication.getInstance().getLoginUser().getUser_type_id());
+        params.put("content",etFbContent.getText().toString());
+
+        NetManager.sendPost(ApiAddress.feedback, params, new NetCallBack() {
+            @Override
+            public void onError(String error, Call call) {
+                HLog.e("webnet", "response=" + error);
+                dialog.dismiss();
+            }
+
+            @Override
+            public void onSuccess(String response) {
+                HLog.e("webnet", "response=" + response);
+                dialog.dismiss();
+                Gson gson = new Gson();
+                final RegisterResult linkResult = gson.fromJson(response, RegisterResult.class);
+                if("1".equals(linkResult.getState())) {
+                    FbackActivity.this.finish();
+                }
+                Toast.makeText(FbackActivity.this, "提交成功", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+    }
+}

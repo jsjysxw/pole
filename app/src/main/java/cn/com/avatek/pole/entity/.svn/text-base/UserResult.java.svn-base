@@ -1,0 +1,36 @@
+package cn.com.avatek.xinhuabookstore.entity;
+
+
+/**
+ * Created by shenxw on 2017/2/6.
+ */
+
+public class UserResult {
+    private String state;
+    private UserBean content;
+    private String reason;
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public UserBean getContent() {
+        return content;
+    }
+
+    public void setContent(UserBean content) {
+        this.content = content;
+    }
+
+    public String getReason() {
+        return reason;
+    }
+
+    public void setReason(String reason) {
+        this.reason = reason;
+    }
+}

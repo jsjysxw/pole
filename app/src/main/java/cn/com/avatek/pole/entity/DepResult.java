@@ -1,0 +1,66 @@
+package cn.com.avatek.pole.entity;
+
+import java.util.List;
+
+public class DepResult {
+
+    /**
+     * state : 1
+     * content : [{"area_id":"1","name":"社区1"}]
+     * reason : 获取成功
+     */
+
+    private String state;
+    private String reason;
+    private List<ContentBean> content;
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public String getReason() {
+        return reason;
+    }
+
+    public void setReason(String reason) {
+        this.reason = reason;
+    }
+
+    public List<ContentBean> getContent() {
+        return content;
+    }
+
+    public void setContent(List<ContentBean> content) {
+        this.content = content;
+    }
+
+    public static class ContentBean {
+        /**
+         * area_id : 1
+         * name : 社区1
+         */
+
+        private String area_id;
+        private String name;
+
+        public String getArea_id() {
+            return area_id;
+        }
+
+        public void setArea_id(String area_id) {
+            this.area_id = area_id;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+    }
+}

@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:orientation="vertical">
+
+    <cn.com.avatek.xinhuabookstore.ctrlview.customview.TitleBarView
+        android:id="@+id/title_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:bar_title="注册"
+        app:right_bar_title=""
+        app:right_bar_visible="false" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin">
+
+            <LinearLayout
+                android:id="@+id/mlayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/ll_name"
+                    style="@style/mtask_ll"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="5dp">
+
+                    <TextView
+                        style="@style/mtask_textview"
+                        android:text="姓名" />
+
+                    <EditText
+                        android:id="@+id/et_name"
+                        style="@style/mtask_et" />
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    style="@style/devide" />
+                <LinearLayout
+                    android:id="@+id/ll_tel"
+                    style="@style/mtask_ll"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="5dp">
+
+                    <TextView
+                        style="@style/mtask_textview"
+                        android:text="电话" />
+
+                    <EditText
+                        android:id="@+id/et_tel"
+                        style="@style/mtask_et" />
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    style="@style/devide" />
+                <LinearLayout
+                    android:id="@+id/ll_psd"
+                    style="@style/mtask_ll"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="5dp">
+
+                    <TextView
+                        style="@style/mtask_textview"
+                        android:text="密码" />
+
+                    <EditText
+                        android:id="@+id/et_psd"
+                        style="@style/mtask_et"
+                        android:inputType="textPassword" />
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    style="@style/devide" />
+                <LinearLayout
+                    android:id="@+id/ll_psd_a"
+                    style="@style/mtask_ll"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="5dp">
+
+                    <TextView
+                        style="@style/mtask_textview"
+                        android:text="重复密码" />
+
+                    <EditText
+                        android:id="@+id/et_psd_a"
+                        style="@style/mtask_et"
+                        android:inputType="textPassword" />
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    style="@style/devide" />
+                <LinearLayout
+                    android:id="@+id/ll_sex"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                <LinearLayout
+                    style="@style/mtask_ll"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="5dp">
+
+                    <TextView
+                        style="@style/mtask_textview"
+                        android:text="性别" />
+
+                    <TextView
+                        android:id="@+id/tv_sex"
+                        style="@style/mtask_et"
+
+                        android:drawableRight="@drawable/xiala"
+                        android:text="男" />
+                    <!--android:background="@drawable/btn_et"-->
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    style="@style/devide" />
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/ll_identity"
+                    style="@style/mtask_ll"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="5dp">
+
+                    <TextView
+                        style="@style/mtask_textview"
+                        android:text="身份证号码" />
+
+                    <EditText
+                        android:id="@+id/et_identity"
+                        style="@style/mtask_et" />
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    style="@style/devide" />
+                <LinearLayout
+                    style="@style/mtask_ll"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="5dp">
+
+                    <TextView
+                        style="@style/mtask_textview"
+                        android:text="社区" />
+
+                    <TextView
+                        android:id="@+id/tv_area"
+                        style="@style/mtask_et"
+
+                        android:drawableRight="@drawable/xiala"
+                        android:text="" />
+                    <!--android:background="@drawable/btn_et"-->
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    style="@style/devide" />
+
+                <Button
+                    android:id="@+id/btn_register"
+                    android:layout_width="280dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/bg_login_btn"
+                    android:text="注    册"
+                    android:textColor="@color/white"
+                    android:textSize="17sp" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

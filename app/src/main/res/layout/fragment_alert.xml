@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/border_shape1"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv3"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_margin="0dp"
+        android:background="@drawable/border_shape3"
+        android:gravity="center"
+        android:text="输入数量"
+        android:textColor="@color/white"
+        android:textSize="15sp" />
+
+    <View
+        android:layout_width="250dp"
+        android:layout_height="1dp"
+        android:background="#606060" />
+
+    <TextView
+        android:id="@+id/tv4"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:maxLines="3"
+        android:minLines="2"
+        android:paddingLeft="18dp"
+        android:paddingTop="19dp"
+        android:text="测试内容测试内容测试内容测试内容测试内容测试内容测试内容"
+        android:textColor="#323232"
+        android:visibility="gone"
+        android:textSize="15sp" />
+    <LinearLayout
+        style="@style/mt_ll"
+        android:id="@+id/ll_next"
+        android:layout_height="wrap_content"
+        android:paddingLeft="18dp"
+        android:paddingTop="19dp"
+        android:paddingRight="18dp">
+
+        <TextView
+            style="@style/mtask_textview"
+            android:text="数量" />
+
+        <EditText
+            android:id="@+id/et1"
+            android:layout_weight="1.5"
+            android:numeric="integer"
+            style="@style/mtask_et" />
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/mt_ll"
+        android:id="@+id/ll_info"
+        android:layout_height="wrap_content"
+        android:paddingLeft="18dp"
+        android:paddingRight="18dp"
+        android:visibility="gone"
+        android:paddingTop="19dp">
+
+        <TextView
+            style="@style/mtask_textview"
+            android:text="路线名称" />
+
+        <EditText
+            android:id="@+id/et2"
+            android:layout_weight="1.5"
+            style="@style/mtask_et" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/border_shape2"
+        android:orientation="horizontal"
+        android:paddingBottom="13dp"
+        android:paddingTop="20dp">
+
+        <TextView
+            android:id="@+id/tv1"
+            android:layout_width="75dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="33dp"
+            android:background="@drawable/pressed1"
+            android:gravity="center"
+            android:text="确定"
+            android:textColor="@color/white"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/tv2"
+            android:layout_width="75dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="33dp"
+            android:background="@drawable/pressed"
+            android:clickable="true"
+            android:gravity="center"
+            android:text="取消"
+            android:textColor="@color/white"
+            android:textSize="15sp" />
+
+    </LinearLayout>
+</LinearLayout>

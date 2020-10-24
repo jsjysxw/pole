@@ -1,0 +1,28 @@
+package cn.com.avatek.xinhuabookstore.constant;
+
+/**
+ * Created by Shenxw on 16/5/29.
+ * url都集中放在这里
+ */
+public class ApiAddress {
+    public final static String host = "www.dayo.net.cn";
+    public final static String Host = "http://"+host+"/community/";
+
+    //api的基础url
+    private final static String hostAddress = Host+"api.php?";
+
+    //自动更新
+    public final static String AndroidUpdate = Host+"Public/download/androidQui.txt";
+
+    //登录
+    public final static String login = hostAddress +"method=login";
+    //注册接口
+    public final static String reg = hostAddress +"method=reg";
+    //主页新闻、图标获取
+    public final static String home_page = hostAddress +"method=home_page";
+    //社区列表获取
+    public final static String area_list = hostAddress +"method=area_list";
+    public final static String feedback = hostAddress +"method=feedback";
+    public final static String work_apply_list = hostAddress +"method=work_apply_list";
+
+}

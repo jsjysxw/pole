@@ -1,0 +1,65 @@
+package cn.com.avatek.pole.utils;
+
+import android.graphics.Bitmap;
+import android.os.Environment;
+
+import java.io.File;
+import java.io.IOException;
+
+/**
+ * Created by ios on 16/3/25.
+ */
+public class ImageUtil {
+    String str2 = Environment.getExternalStorageDirectory() + "/avatek/img/" + System.currentTimeMillis() + ".jpg";
+    String str1 = Environment.getExternalStorageDirectory() + "/avatek/img/";
+    private  ImageFactory imageFactory = new ImageFactory();
+
+    public Bitmap GetBitmap(Bitmap image)
+    {
+
+
+        CreateFile(str1, str2);
+
+        Bitmap bit = imageFactory.ratio(image, 600, 800);
+        return bit;
+    }
+
+    public Bitmap GetBitmap(String image)
+    {
+
+
+        CreateFile(str1, str2);
+
+        Bitmap bit = imageFactory.ratio(image, 600, 800);
+        return bit;
+    }
+
+    public File GetFile(Bitmap bit) throws IOException {
+
+        imageFactory.compressAndGenImage(bit, str2, 60);
+
+        File file = new File(str2);
+        return file;
+    }
+
+    public void CreateFile(String str1, String str2) {
+
+        File file = new File(str1);
+        if (!file.exists()) {
+            try {
+                //按照指定的路径创建文件夹
+                file.mkdirs();
+            } catch (Exception e) {
+                // TODO: handle exception
+            }
+        }
+        File dir = new File(str2);
+        if (!dir.exists()) {
+            try {
+                //在指定的文件夹中创建文件
+                dir.createNewFile();
+            } catch (Exception e) {
+            }
+        }
+    }
+}

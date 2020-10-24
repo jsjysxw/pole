@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="280dp"
+    android:layout_height="wrap_content"
+    android:layout_centerHorizontal="true"
+    android:layout_centerVertical="true"
+    android:background="@drawable/upgrade_boxbg"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="15dp" >
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:text="请稍等..."
+        android:textColor="#494949"
+        android:textSize="21sp" />
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp" >
+
+        <TextView
+            android:id="@+id/title1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="正在下载"
+            android:textColor="#494949"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:textColor="#494949"
+            android:textSize="12sp" />
+    </RelativeLayout>
+
+    <ProgressBar
+        android:id="@+id/pro_bar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:layout_marginBottom="12dp"
+        android:layout_marginTop="8dp"
+        android:progressDrawable="@drawable/upgrade_barcolor" />
+
+    <Button
+        android:id="@+id/confirm"
+        android:layout_width="155dp"
+        android:layout_height="48dp"
+        android:background="@drawable/xml_upgrade_btn_cancel"
+        android:gravity="center"
+        android:text="后台升级"
+        android:textColor="#ffffff"
+        android:textSize="18sp"
+        android:visibility="gone" />
+
+</LinearLayout> 
+ 

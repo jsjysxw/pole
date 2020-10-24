@@ -1,0 +1,60 @@
+package cn.com.avatek.pole.utils;
+
+import android.os.Environment;
+import android.widget.Toast;
+
+import java.io.File;
+import java.io.FileWriter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import cn.com.avatek.pole.SvaApplication;
+
+/**
+ * Created by shenxw on 2016/12/26.
+ */
+
+public class FileLog {
+
+    public static File logFile;
+    protected static FileWriter fileWriter;
+
+    public static void init(){
+        String path= Environment.getExternalStorageDirectory().getPath()+"//avatek//log//";
+        File filePath = new File(path);
+        if (!filePath.exists()){
+            filePath.mkdirs();
+        }
+        //记录本月日志   yyyyMMdd
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMM");
+        String s = dateFormat.format(new Date()) + ".log";
+        String logFilePath = path + s;
+        logFile = new File(logFilePath);
+        try {
+            if (!logFile.exists()){
+                logFile.createNewFile();
+            }
+        } catch (Exception e) {
+//            Toast.makeText(SvaApplication.getContext(), "日志文件创建失败", Toast.LENGTH_SHORT).show();
+        }
+    }
+    public static void fw(String tag, String str){
+        try {
+            fileWriter = new FileWriter(logFile,true);
+            fileWriter.write("\r\n");
+            fileWriter.write(TimeFormatTool.getTimeFormat1()+"="+tag+"->"+str+"\r\n");
+            fileWriter.flush();
+            fileWriter.close();
+        } catch (Exception e) {
+//            Toast.makeText(SvaApplication.getContext(), "日志文件写入失败", Toast.LENGTH_SHORT).show();
+        }
+    }
+    public static void fw(String tag, Object obj){
+        if (obj!=null){
+            fw(tag, obj.toString());
+        }else{
+            fw(tag,"null");
+        }
+    }
+
+}

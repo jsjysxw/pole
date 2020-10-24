@@ -1,0 +1,6 @@
+package cn.com.avatek.xinhuabookstore.utils;
+
+public interface IDropdownItemClickListener {
+
+	public void onItemClick(String text, int position);
+}

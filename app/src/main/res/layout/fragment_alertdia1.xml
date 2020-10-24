@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/border_shape1"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv3"
+        android:layout_width="500px"
+        android:layout_height="90px"
+        android:padding="26px"
+        android:layout_margin="0dp"
+        android:background="@drawable/btn_form"
+        android:gravity="center"
+        android:text="提示"
+        android:textColor="#323232"
+        android:textSize="36px" />
+
+    <View
+        android:layout_width="500px"
+        android:layout_height="2px"
+        android:background="@color/darkgray" />
+
+    <EditText
+        android:id="@+id/et4"
+        android:layout_marginTop="30px"
+        android:layout_width="400px"
+        android:layout_height="65px"
+        android:gravity="center_vertical"
+        android:singleLine="true"
+        android:inputType="phone|number"
+        android:maxLength="3"
+        android:hint="请输入更换序号"
+        android:background="@drawable/et_background"
+        android:paddingLeft="8px"
+        android:paddingRight="8px"
+        android:textSize="30px"/>
+    <Spinner
+        android:id="@+id/spinner1"
+        android:layout_marginTop="18px"
+        android:layout_width="400px"
+        android:background="@drawable/et_background"
+        android:paddingLeft="8px"
+        android:paddingRight="8px"
+        android:textSize="32px"
+        android:layout_height="65px"
+        android:entries="@array/arr_reason"
+        />
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/border_shape2"
+        android:orientation="horizontal"
+        android:paddingBottom="20px"
+        android:paddingTop="20px">
+
+        <TextView
+            android:id="@+id/tv1"
+            android:layout_width="180px"
+            android:layout_height="70px"
+            android:layout_marginLeft="50px"
+            android:background="@drawable/pressed1"
+            android:gravity="center"
+            android:text="确定"
+            android:textColor="@color/white"
+            android:textSize="32px" />
+
+        <TextView
+            android:id="@+id/tv2"
+            android:layout_width="180px"
+            android:layout_height="70px"
+            android:layout_marginLeft="40px"
+            android:background="@drawable/pressed1"
+            android:clickable="true"
+            android:gravity="center"
+            android:text="取消"
+            android:textColor="@color/white"
+            android:textSize="32px" />
+
+    </com.zhy.autolayout.AutoLinearLayout>
+</com.zhy.autolayout.AutoLinearLayout>

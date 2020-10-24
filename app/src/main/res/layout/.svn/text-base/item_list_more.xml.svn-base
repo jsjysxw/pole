@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp">
+
+            <RelativeLayout
+                android:id="@+id/head_view1"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:visibility="gone"
+                android:layout_margin="8dp">
+                <ImageView
+                    android:id="@+id/iv1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_music"
+                    android:scaleType="fitCenter"
+                    />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_alignParentBottom="true"
+                    android:background="@color/transparent">
+
+                    <RelativeLayout
+                        android:visibility="gone"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:alpha="0.5"
+                        android:background="@color/black">
+
+                        <ImageView
+                            android:id="@+id/play_num1"
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="6dp"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/play"/>
+                        <TextView
+                            android:id="@+id/advice_title1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:text="15K"
+                            android:layout_toRightOf="@+id/play_num1"
+                            android:textColor="@color/white"
+                            android:textSize="13sp" />
+
+
+
+                    </RelativeLayout>
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="8dp">
+                <TextView
+                    android:id="@+id/tv_title1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="中外历史文人"
+                    android:textSize="15sp"
+                    android:singleLine="true"
+                    android:maxWidth="150dp"
+                    android:ellipsize="end"
+
+                    />
+                <TextView
+                    android:visibility="gone"
+                    android:id="@+id/tv_time1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="17:50"
+                    android:layout_alignParentRight="true"
+                    android:textSize="15sp"
+                    android:textColor="@color/darkgray"
+                    />
+                <TextView
+                    android:id="@+id/tv_con1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="能有效使用"
+                    android:maxLines="3"
+                    android:ellipsize="end"
+                    android:textSize="15sp"
+                    android:layout_marginTop="15dp"
+                    android:layout_below="@+id/tv_title1"
+                    android:textColor="@color/darkgray"
+                    />
+            </RelativeLayout>
+</LinearLayout>

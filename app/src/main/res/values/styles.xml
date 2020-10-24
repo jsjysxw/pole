@@ -1,0 +1,195 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar"  parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+    <style name="avadialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <!-- 边框 -->
+        <item name="android:windowIsFloating">true</item>
+        <!-- 是否浮现在activity之上 -->
+        <item name="android:windowIsTranslucent">true</item>
+        <!-- 半透明 -->
+        <item name="android:windowNoTitle">true</item>
+        <!-- 无标题 -->
+        <item name="android:windowBackground">@color/transparent</item>
+        <!-- 背景透明 -->
+        <item name="android:backgroundDimEnabled">true</item>
+        <!-- 模糊 -->
+    </style>
+    <style name="AppTheme.NoActionBar2"  parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@color/transparent</item>
+    </style>
+
+
+    <!-- 自定义loading dialog -->
+    <style name="loading_dialog" parent="android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@drawable/border_dialog_background</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+
+    <!--按钮样式-->
+    <style name="btn_tvstyle">
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/btnpressed</item>
+        <item name="android:layout_centerHorizontal">true</item>
+    </style>
+
+    <!--版本更新-->
+    <style name="upgrade_activity_transparent">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+        <!-- <item name="android:windowIsFloating">true</item> -->
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:backgroundDimEnabled">true</item>
+    </style>
+
+    <!--editText样式-->
+    <style name="lx_edit_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:background">@drawable/btn_et</item>
+        <item name="android:layout_height">30dp</item>
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:singleLine">true</item>
+    </style>
+
+    <style name="title" >
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:textSize">@dimen/textTitleSize</item>
+    </style>
+    <style name="mtask_et">
+        <item name="android:layout_weight">1</item>
+        <item name="android:paddingTop">5dp</item>
+        <item name="android:paddingBottom">5dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">#000000</item>
+        <!--<item name="android:background">@null</item>-->
+        <item name="android:background">@drawable/btn_et</item>
+    </style>
+    <style name="devide">
+        <item name="android:layout_height">1dp</item>
+        <item name="android:background">#ccdfdfdf</item>
+    </style>
+    <!-- 下拉样式 -->
+    <style name="TypeSelAnimationFade">
+        <item name="android:windowEnterAnimation">@anim/push_top_in</item>
+        <item name="android:windowExitAnimation">@anim/push_top_out</item>
+    </style>
+    <style name="mtask_textview">
+        <item name="android:layout_weight">2.5</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">fill_parent</item>
+        <item name="android:textColor">#000000</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+    <style name="mtask_ll">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+    <style name="bar_back">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_alignParentLeft">true</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:paddingRight">15dp</item>
+        <item name="android:text">返回</item>
+        <item name="android:textColor"> @color/white</item>
+    </style>
+    <style name="tab_rb_style">
+        <item name="android:layout_width" >0dp</item>
+        <item name="android:layout_height" >match_parent</item>
+        <item name="android:layout_weight" >1</item>
+        <item name="android:button" >@null</item>
+        <item name="android:textColor" >@color/white</item>
+        <item name="android:textSize" >12sp</item>
+        <item name="android:gravity" >center_horizontal|bottom</item>
+        <item name="android:layout_gravity" >bottom</item>
+        <item name="android:paddingBottom">0dp</item>
+        <item name="android:paddingTop">0dp</item>
+    </style>
+
+    <style name="titleright" >
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:textSize">@dimen/new_text_big_size</item>
+        <item name="android:paddingLeft">15dp</item>
+        <item name="android:paddingRight">15dp</item>
+        <item name="android:background">@color/transparent</item>
+    </style>
+
+    <!--RatingBar评分题的样式-->
+    <style name="roomRatingBar" parent="@android:style/Widget.RatingBar">
+        <item name="android:progressDrawable">@drawable/room_rating_bar</item>s
+        <item name="android:minHeight">20dp</item>
+        <item name="android:maxHeight">20dp</item>
+    </style>
+
+    <!--文件选择-->
+    <style name="MyDialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:height">500dp</item>
+        <item name="android:width">300dp</item>
+    </style>
+
+    <style name="EdittextStyle" >
+        <item name="android:background">@drawable/bg_edittext</item>
+        <item name="android:padding">3dp</item>
+        <item name="android:textColorHint">#AAAAAA</item>
+    </style>
+
+
+    <style name="size_21">
+        <item name="android:textSize">@dimen/size_17_phone</item>
+    </style>
+    <style name="size_20">
+        <item name="android:textSize">@dimen/size_14_phone</item>
+    </style>
+    <style name="size_19">
+        <item name="android:textSize">@dimen/size_13_phone</item>
+    </style>
+
+
+    <style name="mt_ll">
+        <item name="android:layout_width">250dp</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+</resources>

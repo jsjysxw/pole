@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="TitleBarView">
+        <attr name="bar_title" format="reference|string" />
+        <attr name="right_bar_title" format="string|reference" />
+        <attr name="right_bar_visible" format="boolean" />
+        <attr name="left_bar_visible" format="boolean" />
+    </declare-styleable>
+    <declare-styleable name="ProgressWheel">
+        <attr name="progressIndeterminate" format="boolean" />
+    </declare-styleable>
+    <declare-styleable name="TagView">
+        <!--声明我们的属性bg_color-->
+        <attr name="bg_color" format="color" />
+        <!--圆角矩形:1、圆弧:2、直角矩形:3-->
+        <attr name="show_mode" format="integer" />
+        <!--圆角半径-->
+        <attr name="m_radius" format="float" />
+    </declare-styleable>
+</resources>

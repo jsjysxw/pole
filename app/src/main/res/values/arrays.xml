@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="arr_province">
+        <item>福建</item>
+        <item>天津 </item>
+    </string-array>
+    <string-array name="arr_city_fj">
+        <item>福州</item>
+        <item>厦门 </item>
+    </string-array>
+    <string-array name="arr_city_tj">
+        <item>天津</item>
+    </string-array>
+    <string-array name="arr_county_fz">
+        <item>鼓楼区</item>
+        <item>仓山区</item>
+        <item>长乐市</item>
+    </string-array>
+    <string-array name="arr_county_xm">
+        <item>思明区</item>
+        <item>湖里区</item>
+        <item>同安区</item>
+    </string-array>
+    <string-array name="arr_county_tj">
+        <item>东丽区</item>
+        <item>西青区</item>
+        <item>津南区</item>
+        <item>北辰区</item>
+        <item>武清区</item>
+        <item>宝坻区</item>
+        <item>滨海新区</item>
+        <item>蓟县</item>
+        <item>宁河县</item>
+        <item>静海县</item>
+    </string-array>
+    <string-array name="arr_sex">
+        <item>男</item>
+        <item>女</item>
+    </string-array>
+    <string-array name="arr_isathome">
+        <item>在家</item>
+        <item>不在家</item>
+    </string-array>
+    <string-array name="arr_reason">
+        <item>配额已满</item>
+        <item>未成人配额</item>
+    </string-array>
+</resources>

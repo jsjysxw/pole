@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"   android:shape="rectangle">
+    <!--android:shape="oval"表示所要绘制的图形是一个椭圆，默认是rectangle，长方形c8c8c7-->
+    <!--<solid android:color="@color/light_theme_blue" />-->
+    <stroke
+        android:width="1.5dp"
+        android:color="@color/theme_color" />
+    <!-- 描边 采用那样的方式将外形轮廓线画出来，width表示笔的粗细，dashWidth表示小横线的宽度，dashGap表示小横线之间的距离-->
+    <!--和CSS中的padding应该是一个道理-->
+    <corners android:radius="6dp" />
+    <!--corners表示是有半径为5像素的圆角-->
+</shape>
