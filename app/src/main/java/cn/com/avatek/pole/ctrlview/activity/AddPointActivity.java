@@ -63,6 +63,10 @@ public class AddPointActivity extends BaseActivity implements View.OnClickListen
     private EditText num,dist,coorx,coory,rematks;
     private TextView cross,voltage,point_type,pid,line_id,materials;
 
+    private String p_id = "";
+    private String l_id = "";
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,6 +76,12 @@ public class AddPointActivity extends BaseActivity implements View.OnClickListen
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             setStatusLine();
         }
+        Intent intent = getIntent();
+        if(intent!=null){
+            p_id = intent.getStringExtra("point_id");
+            l_id = intent.getStringExtra("line_id");
+        }
+
         title_bar = (TitleBarView) findViewById(R.id.title_bar);
         title_bar.setActivity(AddPointActivity.this);
         title_bar.getBtnSubmit().setOnClickListener(new View.OnClickListener() {
@@ -108,6 +118,14 @@ public class AddPointActivity extends BaseActivity implements View.OnClickListen
         pid = (TextView) findViewById(R.id.pid);
         line_id = (TextView) findViewById(R.id.line_id);
         materials = (TextView) findViewById(R.id.materials);
+
+        line_id.setText("线路ID："+l_id);
+        if(p_id!=null&&!p_id.equals("")){
+            pid.setText("父节点ID："+p_id);
+        }else {
+            pid.setText("父节点：self");
+        }
+
     }
 
     private void checkData(){
@@ -157,8 +175,8 @@ public class AddPointActivity extends BaseActivity implements View.OnClickListen
         params.put("cross", cross.getText().toString());
         params.put("voltage", voltage.getText().toString());
         params.put("point_type", point_type.getText().toString());
-        params.put("pid", pid.getText().toString());
-        params.put("line_id", line_id.getText().toString());
+        params.put("pid", p_id.equals("")?"-1":p_id);
+        params.put("line_id", l_id);
         params.put("materials", materials.getText().toString());
         NetManager.sendPost(ApiAddress.insert_point, params, new NetCallBack() {
             @Override
@@ -219,6 +237,9 @@ public class AddPointActivity extends BaseActivity implements View.OnClickListen
             case R.id.materials:
 
                 Intent intent = new Intent(AddPointActivity.this,SelectMaterLActivity.class);
+                if(!materials.getText().toString().trim().equals("")&&!materials.getText().toString().trim().equals("请选择")){
+                    intent.putExtra("cl",materials.getText().toString().trim());
+                }
                 startActivityForResult(intent,11);
                 break;
 
@@ -294,6 +315,17 @@ public class AddPointActivity extends BaseActivity implements View.OnClickListen
         if (token != null) {
             InputMethodManager im = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
             im.hideSoftInputFromWindow(token, InputMethodManager.HIDE_NOT_ALWAYS);
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode==11&&resultCode==22){
+            if(data!=null){
+                String str = data.getStringExtra("cl");
+                materials.setText(str);
+            }
         }
     }
 }

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">电杆绘制</string>
+    <string name="app_name">电力工程管理</string>
     <string name="prompt">提示</string>
     <string name="check_connection">无可用网络连接，请检查网络设置！</string>
     <string name="check_sdcard">请检查内存卡！</string>

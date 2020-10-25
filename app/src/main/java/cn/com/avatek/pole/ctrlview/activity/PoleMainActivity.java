@@ -17,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
@@ -40,8 +41,10 @@ import cn.com.avatek.pole.entity.SimpleResult;
 import cn.com.avatek.pole.manage.NetCallBack;
 import cn.com.avatek.pole.manage.NetManager;
 import cn.com.avatek.pole.module.upgrade.XWBCheckUpdate;
+import cn.com.avatek.pole.orgmap.Main2Activity;
 import cn.com.avatek.pole.utils.AvatekDialog;
 import cn.com.avatek.pole.utils.ExitAppUtils;
+import cn.com.avatek.pole.utils.GlideCircleTransform;
 import cn.com.avatek.pole.utils.HLog;
 import cn.com.avatek.pole.utils.PermissionHelper;
 import okhttp3.Call;
@@ -119,7 +122,7 @@ public class PoleMainActivity extends BaseActivity implements AlertDiaFragment.C
 
         tv_name.setText(SvaApplication.getInstance().getLoginUser().getName());
         tv_show.setText(SvaApplication.getInstance().getLoginUser().getDep_name());
-
+        Glide.with(PoleMainActivity.this).load(R.drawable.laoshitouxiang1).centerCrop().transform(new GlideCircleTransform(PoleMainActivity.this)).into(notice_logo);
 
 
         mRecyclerView = (RecyclerView)findViewById(R.id.recyclerView);
@@ -135,6 +138,7 @@ public class PoleMainActivity extends BaseActivity implements AlertDiaFragment.C
             @Override
             public void onItemClick(View view, int position) {
                 Intent intent1 = new Intent(PoleMainActivity.this,PointListActivity.class);
+//                Intent intent1 = new Intent(PoleMainActivity.this,Main2Activity.class);
                 intent1.putExtra("line_id",contBeanList.get(position).getLine_id());
                 startActivity(intent1);
             }
@@ -356,12 +360,13 @@ public class PoleMainActivity extends BaseActivity implements AlertDiaFragment.C
                 try {
                     Gson gson  = new Gson();
                     SimpleResult webResult = gson.fromJson(response, SimpleResult.class);
-                    if (webResult != null && webResult.getState() > 0) {
-                        Toast.makeText(PoleMainActivity.this, "删除成功", Toast.LENGTH_SHORT).show();
+//                    if (webResult != null && webResult.getState() > 0) {
+//                        Toast.makeText(PoleMainActivity.this, "删除成功", Toast.LENGTH_SHORT).show();
                         initWeb();
-                    }else {
-                        Toast.makeText(PoleMainActivity.this, "删除失败", Toast.LENGTH_SHORT).show();
-                    }
+//                    }else {
+//                        Toast.makeText(PoleMainActivity.this, "删除失败", Toast.LENGTH_SHORT).show();
+//                        initWeb();
+//                    }
                 } catch (Exception e) {
                     e.printStackTrace();
                     Toast.makeText(PoleMainActivity.this, "解析出错", Toast.LENGTH_SHORT).show();

@@ -8,7 +8,7 @@
     <cn.com.avatek.pole.ctrlview.customview.TitleBarView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:bar_title="外勤助手"
+        app:bar_title="电力工程管理"
         app:right_bar_title="设置"
         app:right_bar_visible="false"
         app:left_bar_visible="false"
@@ -33,7 +33,7 @@
             android:layout_marginLeft="30dp"
             android:layout_marginRight="20dp"
             android:scaleType="fitCenter"
-            android:src="@drawable/laoshitouxiang" />
+            android:src="@drawable/laoshitouxiang1" />
 
         <LinearLayout
             android:layout_width="wrap_content"

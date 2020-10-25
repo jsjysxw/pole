@@ -40,7 +40,7 @@ import okhttp3.Call;
 
 
 /**
- * Created by User on 2015/4/29.
+ * Created by User on
  */
 public class SelectMaterLActivity extends BaseActivity implements AlertDia1Fragment.ConfirmListener{
 
@@ -65,10 +65,64 @@ public class SelectMaterLActivity extends BaseActivity implements AlertDia1Fragm
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             setStatusLine();
         }
+
+        getIntData();
         title_bar = (TitleBarView) findViewById(R.id.title_bar);
         title_bar.setActivity(SelectMaterLActivity.this);
+        title_bar.getBtnSubmit().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dealPre();
+                setFinish();
+            }
+        });
         initListView();
         initWeb("cl");
+    }
+
+    private void getIntData() {
+
+        String consumable = "";
+        Intent intent = getIntent();
+        if(intent!=null){
+            consumable = intent.getStringExtra("cl");
+        }
+        if(consumable!=null&&!consumable.equals("")){
+            String [] strings = consumable.split(";");
+            if(strings.length>0){
+                for (int i= 0;i<strings.length;i++){
+                    String str = strings[i];
+                    if(str!=null&&!str.equals("")){
+                        String [] strs = str.split(":");
+                        if(strs.length==2){
+                            MaterBean c = new MaterBean();
+                            c.setId(strs[0]);
+                            c.setNum(Integer.parseInt( strs[1]));
+                            saveBeanList.add(c);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    private void setFinish()
+    {
+        String str = "";
+        for (MaterBean c:saveBeanList){
+            if(c.getNum()>0){
+                if(str.equals("")){
+                    str = c.getId()+":"+c.getNum();
+                }else {
+                    str += ";"+c.getId()+":"+c.getNum();
+                }
+            }
+        }
+
+        Intent intent1 = new Intent();
+        intent1.putExtra("cl",str);
+        setResult(22,intent1);
+        finish();
     }
 
     private void initListView() {
@@ -146,6 +200,9 @@ public class SelectMaterLActivity extends BaseActivity implements AlertDia1Fragm
 
     //-2为材料-3为材料组
     private void initWeb(final String type) {
+
+        dealPre();
+
         String pid = "-1";
         if(!type.equals("cl")&&!type.equals("clz")){
             pid = type;
@@ -225,6 +282,8 @@ public class SelectMaterLActivity extends BaseActivity implements AlertDia1Fragm
                             mAdapter.notifyDataSetChanged();
                         }
                     }
+
+                    dealAfter();
                 }
             }
         });
@@ -235,6 +294,44 @@ public class SelectMaterLActivity extends BaseActivity implements AlertDia1Fragm
         if(!next.equals("")){
             contBeanList.get(info).setNum(Integer.parseInt(next));
             mAdapter.notifyDataSetChanged();
+        }
+    }
+
+    /**
+     * 更换列表之前，操作savelist
+     * 1。将与保存的相同的数据num替换掉
+     * 2。将显示的lis中tnum不为0的加入
+     */
+    private void dealPre(){
+
+        for (MaterBean b :contBeanList)
+        {
+            int d = 0;
+            for (MaterBean g :saveBeanList) {
+                if (b.getId().equals(g.getId())) {
+                    g.setNum(b.getNum());
+                    d++;
+                }
+            }
+            if(d==0&&b.getNum()>0){
+                saveBeanList.add(b);
+            }
+        }
+    }
+
+    /**
+     * 更换列表之前，操作显示list
+     * 1。将savelist中相同id的num数据更新到显示列表上去
+     *
+     */
+    private void dealAfter(){
+        for (MaterBean b :contBeanList)
+        {
+            for (MaterBean g :saveBeanList) {
+                if (b.getId().equals(g.getId())) {
+                    b.setNum(g.getNum());
+                }
+            }
         }
     }
 }

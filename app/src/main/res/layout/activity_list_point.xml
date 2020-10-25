@@ -5,23 +5,59 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
     <cn.com.avatek.pole.ctrlview.customview.TitleBarView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:bar_title="选点列表"
         app:right_bar_title="新建"
-        app:right_bar_visible="true"
+        app:right_bar_visible="false"
         android:id="@+id/title_bar"
         />
-    <com.scwang.smartrefresh.layout.SmartRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/refreshLayout"
+
+        <TextView
+            android:id="@+id/tv_bar_new"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="4dp"
+            android:padding="5dp"
+            android:text="新建"
+            android:textColor="@color/white"
+            />
+        <TextView
+            android:id="@+id/tv_bar_del"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+           android:padding="5dp"
+            android:layout_toLeftOf="@+id/tv_bar_new"
+            android:text="删除"
+            android:textColor="@color/white"
+            />
+    </RelativeLayout>
+    <cn.com.avatek.pole.orgmap.OrgMapView
+        android:id="@+id/orgMapView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recyclerView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:overScrollMode="never"
-            android:background="#fff" />
-    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+        android:layout_height="match_parent"
+        app:item_width="28dp"
+        app:item_height="167dp"
+        app:item_bgcolor="#FFF6F6F6"
+        app:item_bgcolor_selected="#FF609961"
+        app:item_raidus="8dp"
+        app:item_textcolor="#FF343434"
+        app:item_textcolor_selected="#FFFFFFFF"
+        app:item_textsize="16sp"
+        app:item_margin_h="16dp"
+        app:item_margin_v="62dp"
+        app:item_padding_v="10dp"
+        app:item_line1_margin_top="42dp"
+        app:item_margin_to_line="10dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 </LinearLayout>

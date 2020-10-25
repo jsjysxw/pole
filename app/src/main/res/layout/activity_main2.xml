@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".orgmap.Main2Activity">
+
+    <cn.com.avatek.pole.orgmap.OrgMapView
+        android:id="@+id/orgMapView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:item_width="28dp"
+        app:item_height="167dp"
+        app:item_bgcolor="#FFF6F6F6"
+        app:item_bgcolor_selected="#FF609961"
+        app:item_raidus="8dp"
+        app:item_textcolor="#FF343434"
+        app:item_textcolor_selected="#FFFFFFFF"
+        app:item_textsize="16sp"
+        app:item_margin_h="16dp"
+        app:item_margin_v="62dp"
+        app:item_padding_v="10dp"
+        app:item_line1_margin_top="42dp"
+        app:item_margin_to_line="10dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+</LinearLayout>

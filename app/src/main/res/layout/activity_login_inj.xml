@@ -11,6 +11,7 @@
         android:layout_height="220dp"
         android:src="@drawable/ic_login_top"
         android:scaleType="fitXY"
+        android:visibility="invisible"
         />
 
     <LinearLayout
