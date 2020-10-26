@@ -109,6 +109,7 @@ public class PointListActivity extends BaseActivity {
                 if(listResult!=null) {
                     Intent intent2 = new Intent(PointListActivity.this, EditMapActivity.class);
                     intent2.putExtra("listResult",(new Gson()).toJson(listResult));
+                    intent2.putExtra("line_id",line_id);
                     startActivity(intent2);
                 }else {
                     Toast.makeText(mContext, "暂无数据", Toast.LENGTH_SHORT).show();

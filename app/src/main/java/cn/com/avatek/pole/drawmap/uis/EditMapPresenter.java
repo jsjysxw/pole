@@ -300,6 +300,7 @@ public class EditMapPresenter implements EditMapContract.Presenter {
 ////        }
 //        owantFileCreate.makeOwantFile(fileName);
 //        owantFileCreate.deleteTemp();
+
     }
 
     @Override

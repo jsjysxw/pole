@@ -24,8 +24,14 @@ import com.google.gson.Gson;
 
 import java.io.Serializable;
 import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import cn.com.avatek.pole.R;
+import cn.com.avatek.pole.constant.ApiAddress;
+import cn.com.avatek.pole.ctrlview.activity.PointListActivity;
 import cn.com.avatek.pole.ctrlview.activity.PoleMainActivity;
 import cn.com.avatek.pole.ctrlview.customview.TitleBarView;
 import cn.com.avatek.pole.drawmap.bases.BaseActivity;
@@ -41,6 +47,12 @@ import cn.com.avatek.pole.drawmap.views.TreeView;
 import cn.com.avatek.pole.drawmap.views.TreeViewItemClick;
 import cn.com.avatek.pole.drawmap.views.TreeViewItemLongClick;
 import cn.com.avatek.pole.entity.PointResult;
+import cn.com.avatek.pole.entity.SimpleResult;
+import cn.com.avatek.pole.manage.NetCallBack;
+import cn.com.avatek.pole.manage.NetManager;
+import cn.com.avatek.pole.utils.AvatekDialog;
+import cn.com.avatek.pole.utils.HLog;
+import okhttp3.Call;
 
 /**
  * Created by owant on 21/03/2017.
@@ -51,6 +63,7 @@ public class EditMapActivity extends BaseActivity implements EditMapContract.Vie
     private final static String tree_model = "tree_model";
 
     private String saveDefaultFilePath;
+    private String line_id;
     private EditMapContract.Presenter mEditMapPresenter;
 
     private TreeView editMapTreeView;
@@ -97,7 +110,8 @@ public class EditMapActivity extends BaseActivity implements EditMapContract.Vie
         title_bar.getBtnSubmit().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                savePointxy();
+                subWeb();
             }
         });
     }
@@ -189,12 +203,12 @@ public class EditMapActivity extends BaseActivity implements EditMapContract.Vie
             //解析owant文件
             mEditMapPresenter.readOwantFile();
         } else {
-                String str1 = intent.getStringExtra("listResult");
-            Log.e("list","str1="+str1);
-            if(str1!=null&&!str1.equals("")) {
+            String str1 = intent.getStringExtra("listResult");
+            line_id = intent.getStringExtra("line_id");
+            if (str1 != null && !str1.equals("")) {
                 PointResult pointResult = (new Gson()).fromJson(str1, PointResult.class);
                 mEditMapPresenter.createDefaultTreeModel(pointResult);
-            }else {
+            } else {
                 Toast.makeText(EditMapActivity.this, "无数据", Toast.LENGTH_SHORT).show();
             }
 
@@ -375,10 +389,12 @@ public class EditMapActivity extends BaseActivity implements EditMapContract.Vie
                             public void onClick(
                                     DialogInterface dialog,
                                     int which) {
-                                mEditMapPresenter.doSaveFile("");
+//                                mEditMapPresenter.doSaveFile("");
                                 //退出文件
-                                clearDialog(saveFileDialog);
-                                EditMapActivity.this.finish();
+//                                clearDialog(saveFileDialog);
+                                savePointxy();
+                                subWeb();
+
 
                             }
                         })
@@ -447,5 +463,80 @@ public class EditMapActivity extends BaseActivity implements EditMapContract.Vie
     protected void onDestroy() {
         mEditMapPresenter.onRecycle();
         super.onDestroy();
+    }
+
+    List<PointResult.ContentBean> contentBeanList = new ArrayList<>();
+
+    private void savePointxy() {
+        contentBeanList.clear();
+        TreeModel<String> mTreemodel = mEditMapPresenter.getTreeModel();
+        if (mTreemodel != null) {
+            NodeModel<String> nodeModel = mTreemodel.getRootNode();
+            if (nodeModel != null && nodeModel.getValue() != null) {
+                PointResult.ContentBean bean = new PointResult.ContentBean();
+                bean.setPoint_id(String.valueOf(nodeModel.getCuuid()));
+                bean.setLine_id(line_id);
+                bean.setLeft(nodeModel.getCoorl());
+                bean.setTop(nodeModel.getCoort());
+                contentBeanList.add(bean);
+            }
+            getChildrens(nodeModel);
+        }
+    }
+
+    private void getChildrens(NodeModel<String> node) {
+        if (node != null && node.getChildNodes() != null && node.getChildNodes().size() > 0) {
+            for (NodeModel<String> nodem : node.getChildNodes()) {
+                if (nodem != null && nodem.getValue() != null) {
+                    PointResult.ContentBean bean = new PointResult.ContentBean();
+                    bean.setPoint_id(String.valueOf(nodem.getCuuid()));
+                    bean.setLine_id(line_id);
+                    bean.setLeft(nodem.getCoorl());
+                    bean.setTop(nodem.getCoort());
+                    contentBeanList.add(bean);
+                }
+                getChildrens(nodem);
+            }
+        }
+
+    }
+
+    private void subWeb(){
+        if(contentBeanList!=null&&contentBeanList.size()>0){
+//            Map<String, String> params = new HashMap<>();
+//            params.put("update_points", (new Gson()).toJson(contentBeanList));
+//            NetManager.sendPost(ApiAddress.point_update, params, new NetCallBack() {
+//                @Override
+//                public void onError(String error, Call call) {
+//
+//
+//                    Toast.makeText(EditMapActivity.this, "获取失败",
+//                            Toast.LENGTH_SHORT).show();
+//                }
+//
+//                @Override
+//                public void onSuccess(String response) {
+//                    HLog.e("webnet","response="+response);
+//                    try {
+//                        Gson gson  = new Gson();
+//                        SimpleResult webResult = gson.fromJson(response, SimpleResult.class);
+//                        if(webResult.getState()>0){
+//                            EditMapActivity.this.finish();
+//                            Toast.makeText(EditMapActivity.this, "坐标更新成功", Toast.LENGTH_SHORT).show();
+//                        }else {
+//                            Toast.makeText(EditMapActivity.this, "坐标更新失败", Toast.LENGTH_SHORT).show();
+//                        }
+//                    } catch (Exception e) {
+//                        e.printStackTrace();
+//                        Toast.makeText(EditMapActivity.this, "解析出错", Toast.LENGTH_SHORT).show();
+//                    }
+//
+//
+//
+//                }
+//            });
+        }
+
+
     }
 }
