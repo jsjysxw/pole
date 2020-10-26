@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/AppTheme"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <cn.com.avatek.pole.ctrlview.customview.TitleBarView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:bar_title="线路绘制"
+        app:right_bar_title="保存"
+        app:right_bar_visible="true"
+        app:left_bar_visible="true"
+        android:id="@+id/title_bar"
+        />
+    <include
+        android:id="@+id/edit_menu"
+        layout="@layout/div_edit_menu"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_gravity="top"/>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/athens_gray"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:orientation="vertical">
+
+        <cn.com.avatek.pole.drawmap.views.TreeView
+            android:background="@drawable/box"
+            android:id="@+id/edit_map_tree_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </FrameLayout>
+
+</LinearLayout>
+

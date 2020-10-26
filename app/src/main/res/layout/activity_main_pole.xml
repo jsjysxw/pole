@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         app:bar_title="电力工程管理"
         app:right_bar_title="设置"
-        app:right_bar_visible="false"
+        app:right_bar_visible="true"
         app:left_bar_visible="false"
         android:id="@+id/title_bar"
         />

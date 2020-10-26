@@ -47,6 +47,7 @@
         <activity android:name=".ctrlview.activity.MenuActivity"/>
         <activity android:name=".ctrlview.activity.PointListActivity"/>
         <activity android:name=".ctrlview.activity.AddPointActivity" />
+        <activity android:name=".drawmap.uis.EditMapActivity" />
         <activity android:name=".ctrlview.activity.SelectMaterLActivity" />
         <activity android:name=".ctrlview.activity.PoleMainActivity"/>
         <activity android:name=".orgmap.Main2Activity"/>

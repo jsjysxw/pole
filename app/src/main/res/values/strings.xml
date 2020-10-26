@@ -67,4 +67,33 @@
         <item>Video</item>
         <item>Audio</item>
     </string-array>
+
+
+    <string name="add_a_same_floor_node">增加同级节点.</string>
+    <string name="null_node">无节点</string>
+    <string name="add_a_sub_node">增加子节点</string>
+    <string name="edit_node">编辑节点</string>
+    <string name="title_add_sub_node">增加节点</string>
+    <string name="input_a_new_node">请输入</string>
+    <string name="enter">确定</string>
+
+    <!--tab menu-->
+    <string name="tab_sub_node">子节点</string>
+    <string name="tab_node">兄节点</string>
+    <string name="tab_front_view">图居中</string>
+    <string name="tab_code_mode">自身</string>
+    <string name="delete">删除</string>
+    <string name="cannot_add_node">无法增加节点</string>
+    <string name="save_file">保存</string>
+    <string name="no">取消</string>
+    <string name="save">保存</string>
+    <string name="file_destroyed">数据损坏，请删除!</string>
+    <string name="denied_write_storage">没有写内存卡权限!</string>
+    <string name="trans_item">trans_item</string>
+    <string name="same_name_file">已有相同!</string>
+    <string name="file_name_empty">不能为空!</string>
+
+    <string name="defualt_my_plan">根节点</string>
+
+    <string name="exit_edit">退出</string>
 </resources>

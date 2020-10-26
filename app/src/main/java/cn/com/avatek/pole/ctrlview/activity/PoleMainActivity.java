@@ -35,6 +35,7 @@ import cn.com.avatek.pole.adapter.MyAdapter;
 import cn.com.avatek.pole.constant.ApiAddress;
 import cn.com.avatek.pole.ctrlview.customview.TitleBarView;
 import cn.com.avatek.pole.ctrlview.dialogs.AlertDiaFragment;
+import cn.com.avatek.pole.drawmap.uis.EditMapActivity;
 import cn.com.avatek.pole.entity.ContBean;
 import cn.com.avatek.pole.entity.HomeFunc;
 import cn.com.avatek.pole.entity.SimpleResult;
@@ -111,6 +112,18 @@ public class PoleMainActivity extends BaseActivity implements AlertDiaFragment.C
     }
 
     private void initView() {
+
+        title_bar = (TitleBarView) findViewById(R.id.title_bar);
+        title_bar.setActivity(PoleMainActivity.this);
+
+
+        title_bar.getBtnSubmit().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent2 = new Intent(PoleMainActivity.this, EditMapActivity.class);
+                startActivity(intent2);
+            }
+        });
 
         notice_logo = (ImageView) findViewById(R.id.notice_logo);
         tv_name = (TextView) findViewById(R.id.tv_name);
