@@ -38,6 +38,16 @@
             android:text="删除"
             android:textColor="@color/white"
             />
+        <TextView
+            android:id="@+id/tv_bar_switch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+           android:padding="5dp"
+            android:layout_toLeftOf="@+id/tv_bar_del"
+            android:text="切换"
+            android:textColor="@color/white"
+            />
     </RelativeLayout>
     <cn.com.avatek.pole.orgmap.OrgMapView
         android:id="@+id/orgMapView"

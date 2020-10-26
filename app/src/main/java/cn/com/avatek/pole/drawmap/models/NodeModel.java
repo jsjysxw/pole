@@ -38,6 +38,7 @@ public class NodeModel<T> implements Serializable {
     public int coort;
     public int coorr;
     public int coorb;
+    public int cuuid;
 
     public boolean hidden = false;
 
@@ -127,5 +128,13 @@ public class NodeModel<T> implements Serializable {
 
     public void setCoorb(int coorb) {
         this.coorb = coorb;
+    }
+
+    public int getCuuid() {
+        return cuuid;
+    }
+
+    public void setCuuid(int cuuid) {
+        this.cuuid = cuuid;
     }
 }

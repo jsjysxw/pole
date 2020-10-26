@@ -396,7 +396,7 @@ public class TreeView extends ViewGroup implements ScaleGestureDetector.OnScaleG
             @Override
             public void onClick(View view) {
 //                performTreeItemClick(view);
-                preformTreeItemLongClick(view);
+                performTreeItemClick(view);
             }
         });
         nodeView.setOnLongClickListener(new OnLongClickListener() {

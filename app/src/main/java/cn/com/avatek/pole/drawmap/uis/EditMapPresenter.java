@@ -2,6 +2,7 @@ package cn.com.avatek.pole.drawmap.uis;
 
 import android.text.TextUtils;
 import android.util.Log;
+import android.widget.Toast;
 
 
 import java.io.File;
@@ -21,6 +22,8 @@ import cn.com.avatek.pole.drawmap.models.TreeModel;
 import cn.com.avatek.pole.drawmap.utils.AppConstants;
 import cn.com.avatek.pole.drawmap.utils.LOG;
 import cn.com.avatek.pole.drawmap.utils.StringTool;
+import cn.com.avatek.pole.entity.OrgBean;
+import cn.com.avatek.pole.entity.PointResult;
 
 /**
  * Created by owant on 21/03/2017.
@@ -73,10 +76,27 @@ public class EditMapPresenter implements EditMapContract.Presenter {
     }
 
     @Override
-    public void createDefaultTreeModel() {
-        NodeModel<String> plan = new NodeModel<>(mView.getDefaultPlanStr());
-        mTreeModel = new TreeModel<>(plan);
-        mView.setTreeViewData(mTreeModel);
+    public void createDefaultTreeModel(PointResult pointResult) {
+
+        list = new ArrayList<>();
+        if (pointResult != null && pointResult.getContent() != null) {
+            for (PointResult.ContentBean bean : pointResult.getContent()) {
+                OrgBean orgBean = new OrgBean();
+                orgBean.setCid(Integer.parseInt(bean.getPid()));
+                orgBean.setCuuid(Integer.parseInt(bean.getPoint_id()));
+                orgBean.setOrgname(bean.getNum());
+                list.add(orgBean);
+            }
+        }
+        findTree(list);
+        if(mTreeModel!=null && mTreeModel.getRootNode()!=null){
+            mView.setTreeViewData(mTreeModel);
+        }else {
+            NodeModel<String> plan = new NodeModel<>(mView.getDefaultPlanStr());
+            mTreeModel = new TreeModel<>(plan);
+            mView.setTreeViewData(mTreeModel);
+        }
+
 
 //        refreshOwantFilesLists();
     }
@@ -314,6 +334,37 @@ public class EditMapPresenter implements EditMapContract.Presenter {
             return mTreeModel.getRootNode().getValue();
         } else {
             return mFileName;
+        }
+    }
+
+    private List<OrgBean> list = new ArrayList<>();
+
+    public TreeModel<String> findTree(List<OrgBean> orgBeanList) {
+        List<NodeModel<String>> list1 = new ArrayList<>();
+        for (OrgBean dept : orgBeanList) {
+            if (dept.getCid() == -1) {
+                NodeModel<String> plan = new NodeModel<>(dept.getOrgname());
+                mTreeModel = new TreeModel<>(plan);
+                plan.setCuuid(dept.getCuuid());
+                plan.setCoorl(80);
+                plan.setCoort(80);
+                list1.add(plan);
+            }
+        }
+        findChildren(list1, orgBeanList);
+        return mTreeModel;
+    }
+
+    private void findChildren(List<NodeModel<String>> sysDepts, List<OrgBean> depts) {
+        for (NodeModel<String> sysDept : sysDepts) {
+            for (OrgBean dept : depts) {
+                if (sysDept.getCuuid() == dept.getCid()) {
+                    NodeModel<String> addNode = new NodeModel<>(dept.getOrgname());
+                    addNode.setCuuid(dept.getCuuid());
+                    mTreeModel.addNode(sysDept, addNode);
+                }
+            }
+            findChildren(sysDept.getChildNodes(), depts);
         }
     }
 

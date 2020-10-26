@@ -20,6 +20,8 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 
+import com.google.gson.Gson;
+
 import java.io.Serializable;
 import java.lang.reflect.Field;
 
@@ -38,6 +40,7 @@ import cn.com.avatek.pole.drawmap.views.RightTreeLayoutManager;
 import cn.com.avatek.pole.drawmap.views.TreeView;
 import cn.com.avatek.pole.drawmap.views.TreeViewItemClick;
 import cn.com.avatek.pole.drawmap.views.TreeViewItemLongClick;
+import cn.com.avatek.pole.entity.PointResult;
 
 /**
  * Created by owant on 21/03/2017.
@@ -148,7 +151,7 @@ public class EditMapActivity extends BaseActivity implements EditMapContract.Vie
         editMapTreeView.setTreeViewItemClick(new TreeViewItemClick() {
             @Override
             public void onItemClick(View item) {
-
+                mEditMapPresenter.editNote();
             }
         });
 
@@ -176,6 +179,7 @@ public class EditMapActivity extends BaseActivity implements EditMapContract.Vie
         mEditMapPresenter.start();
 
         Intent intent = getIntent();
+
         Uri data = intent.getData();
 
         if (data != null) {
@@ -185,7 +189,15 @@ public class EditMapActivity extends BaseActivity implements EditMapContract.Vie
             //解析owant文件
             mEditMapPresenter.readOwantFile();
         } else {
-            mEditMapPresenter.createDefaultTreeModel();
+                String str1 = intent.getStringExtra("listResult");
+            Log.e("list","str1="+str1);
+            if(str1!=null&&!str1.equals("")) {
+                PointResult pointResult = (new Gson()).fromJson(str1, PointResult.class);
+                mEditMapPresenter.createDefaultTreeModel(pointResult);
+            }else {
+                Toast.makeText(EditMapActivity.this, "无数据", Toast.LENGTH_SHORT).show();
+            }
+
         }
     }
 

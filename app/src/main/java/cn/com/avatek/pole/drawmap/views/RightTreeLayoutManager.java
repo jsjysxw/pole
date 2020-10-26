@@ -422,7 +422,7 @@ public class RightTreeLayoutManager implements TreeLayoutManager {
         int rr = lr + rootView.getMeasuredWidth();
         int br = tr + rootView.getMeasuredHeight();
 
-        if(rootView.getTreeNode().coorl!=0&&rootView.getTreeNode().coort!=0&&rootView.getTreeNode().coorr!=0&&rootView.getTreeNode().coorb!=0) {
+        if(rootView.getTreeNode().coorl!=0&&rootView.getTreeNode().coort!=0) {
             rootView.layout(rootView.getTreeNode().coorl, rootView.getTreeNode().coort,
                     rootView.getTreeNode().getCoorl()+rootView.getMeasuredWidth(), rootView.getTreeNode().getCoort()+rootView.getMeasuredHeight());
         }else {

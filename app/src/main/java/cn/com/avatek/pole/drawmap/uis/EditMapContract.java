@@ -7,6 +7,7 @@ import cn.com.avatek.pole.drawmap.bases.BasePresenter;
 import cn.com.avatek.pole.drawmap.bases.BaseView;
 import cn.com.avatek.pole.drawmap.models.NodeModel;
 import cn.com.avatek.pole.drawmap.models.TreeModel;
+import cn.com.avatek.pole.entity.PointResult;
 
 /**
  * Created by owant on 21/03/2017.
@@ -34,7 +35,7 @@ public interface EditMapContract {
         /**
          * 创建默认的TreeModel
          */
-        void createDefaultTreeModel();
+        void createDefaultTreeModel(PointResult pointResult);
 
         /**
          * 添加节点

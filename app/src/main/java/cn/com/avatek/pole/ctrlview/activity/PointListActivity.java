@@ -25,6 +25,7 @@ import cn.com.avatek.pole.SvaApplication;
 import cn.com.avatek.pole.adapter.MyAdapter;
 import cn.com.avatek.pole.constant.ApiAddress;
 import cn.com.avatek.pole.ctrlview.customview.TitleBarView;
+import cn.com.avatek.pole.drawmap.uis.EditMapActivity;
 import cn.com.avatek.pole.entity.ContBean;
 import cn.com.avatek.pole.entity.ListResult;
 import cn.com.avatek.pole.entity.OrgBean;
@@ -53,8 +54,9 @@ public class PointListActivity extends BaseActivity {
     private String point_id = "";
     private String gen = "";
     private OrgMapView orgMapView;
+    private PointResult listResult;
 
-    private TextView tv_bar_new,tv_bar_del;
+    private TextView tv_bar_new,tv_bar_del,tv_bar_switch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +67,7 @@ public class PointListActivity extends BaseActivity {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             setStatusLine();
         }
-        Intent intent = getIntent();
+        final Intent intent = getIntent();
         line_id = intent.getStringExtra("line_id");
 
         title_bar = (TitleBarView) findViewById(R.id.title_bar);
@@ -73,6 +75,7 @@ public class PointListActivity extends BaseActivity {
 
         tv_bar_new = (TextView) findViewById(R.id.tv_bar_new);
         tv_bar_del = (TextView) findViewById(R.id.tv_bar_del);
+        tv_bar_switch = (TextView) findViewById(R.id.tv_bar_switch);
 
         tv_bar_new.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,8 +96,22 @@ public class PointListActivity extends BaseActivity {
                     }else {
                         initDel(point_id);
                     }
-                }else {
+                }else if(list!=null&&list.size()==1){
                     initDel(point_id);
+                }else {
+                    Toast.makeText(mContext, "无数据可删除", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        tv_bar_switch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(listResult!=null) {
+                    Intent intent2 = new Intent(PointListActivity.this, EditMapActivity.class);
+                    intent2.putExtra("listResult",(new Gson()).toJson(listResult));
+                    startActivity(intent2);
+                }else {
+                    Toast.makeText(mContext, "暂无数据", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -127,7 +144,7 @@ public class PointListActivity extends BaseActivity {
                     list.clear();
                 }
                 Gson gson = new Gson();
-                PointResult listResult = gson.fromJson(response, PointResult.class);
+                listResult = gson.fromJson(response, PointResult.class);
 
                 list = new ArrayList<>();
                 if (listResult != null && listResult.getContent() != null) {

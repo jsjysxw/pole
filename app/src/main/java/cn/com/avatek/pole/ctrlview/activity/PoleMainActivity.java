@@ -120,8 +120,7 @@ public class PoleMainActivity extends BaseActivity implements AlertDiaFragment.C
         title_bar.getBtnSubmit().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent2 = new Intent(PoleMainActivity.this, EditMapActivity.class);
-                startActivity(intent2);
+
             }
         });
 
