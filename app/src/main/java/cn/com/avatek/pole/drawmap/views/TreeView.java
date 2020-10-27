@@ -61,7 +61,7 @@ public class TreeView extends ViewGroup implements ScaleGestureDetector.OnScaleG
     private int mHeight;
 
     //触摸循环事件，放大，等同，缩小
-    private Integer[] looperBody = new Integer[]{0, 1, 0, -1};
+    private Integer[] looperBody = new Integer[]{0, -1, 0, 1};
     private LooperFlag<Integer> mLooperFlag;
 
 
@@ -153,9 +153,9 @@ public class TreeView extends ViewGroup implements ScaleGestureDetector.OnScaleG
 
         if (item == -1) {
 
-            animator1 = ObjectAnimator.ofFloat(TreeView.this, "scaleX", getScaleX(), 0.3f)
+            animator1 = ObjectAnimator.ofFloat(TreeView.this, "scaleX", getScaleX(), 0.6f)
                     .setDuration(500);
-            animator2 = ObjectAnimator.ofFloat(TreeView.this, "scaleY", getScaleX(), 0.3f)
+            animator2 = ObjectAnimator.ofFloat(TreeView.this, "scaleY", getScaleX(), 0.6f)
                     .setDuration(500);
 
         } else if (item == 0) {

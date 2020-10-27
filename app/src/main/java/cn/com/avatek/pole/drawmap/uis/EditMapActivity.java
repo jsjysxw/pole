@@ -22,6 +22,7 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 
+import java.io.File;
 import java.io.Serializable;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -41,6 +42,7 @@ import cn.com.avatek.pole.drawmap.utils.AndroidUtil;
 import cn.com.avatek.pole.drawmap.utils.AppConstants;
 import cn.com.avatek.pole.drawmap.utils.DensityUtils;
 import cn.com.avatek.pole.drawmap.utils.LOG;
+import cn.com.avatek.pole.drawmap.utils.ScreenShot;
 import cn.com.avatek.pole.drawmap.views.EditAlertDialog;
 import cn.com.avatek.pole.drawmap.views.RightTreeLayoutManager;
 import cn.com.avatek.pole.drawmap.views.TreeView;
@@ -112,6 +114,7 @@ public class EditMapActivity extends BaseActivity implements EditMapContract.Vie
             @Override
             public void onClick(View view) {
                 savePointxy();
+                ScreenShot.shoot(EditMapActivity.this,new File(Environment.getExternalStorageDirectory().getPath() + "/share_pic.png"));
             }
         });
     }
@@ -221,6 +224,8 @@ public class EditMapActivity extends BaseActivity implements EditMapContract.Vie
 
     @Override
     protected void onLoadData() {
+
+
     }
 
     @Override
