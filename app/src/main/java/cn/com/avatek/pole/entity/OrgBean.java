@@ -16,7 +16,25 @@ public class OrgBean {
     private String orgname;
     private int cid;
     private int cuuid;
+    private String left;
+    private String top;
     private List<OrgBean> childs = new ArrayList<>();
+
+    public String getLeft() {
+        return left;
+    }
+
+    public void setLeft(String left) {
+        this.left = left;
+    }
+
+    public String getTop() {
+        return top;
+    }
+
+    public void setTop(String top) {
+        this.top = top;
+    }
 
     public String getOrgname() {
         return orgname;

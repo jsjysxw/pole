@@ -56,8 +56,6 @@ public class PointResult {
         private String pid;
         private String status;
         private String line_id;
-        private int left;
-        private int top;
 
         public String getPoint_id() {
             return point_id;
@@ -155,20 +153,5 @@ public class PointResult {
             this.line_id = line_id;
         }
 
-        public int getLeft() {
-            return left;
-        }
-
-        public void setLeft(int left) {
-            this.left = left;
-        }
-
-        public int getTop() {
-            return top;
-        }
-
-        public void setTop(int top) {
-            this.top = top;
-        }
     }
 }

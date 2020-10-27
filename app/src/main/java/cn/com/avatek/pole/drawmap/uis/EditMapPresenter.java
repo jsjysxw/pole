@@ -85,6 +85,8 @@ public class EditMapPresenter implements EditMapContract.Presenter {
                 orgBean.setCid(Integer.parseInt(bean.getPid()));
                 orgBean.setCuuid(Integer.parseInt(bean.getPoint_id()));
                 orgBean.setOrgname(bean.getNum());
+                orgBean.setLeft(bean.getY());
+                orgBean.setTop(bean.getX());
                 list.add(orgBean);
             }
         }
@@ -347,8 +349,20 @@ public class EditMapPresenter implements EditMapContract.Presenter {
                 NodeModel<String> plan = new NodeModel<>(dept.getOrgname());
                 mTreeModel = new TreeModel<>(plan);
                 plan.setCuuid(dept.getCuuid());
-                plan.setCoorl(80);
-                plan.setCoort(80);
+                int l = 0;
+                int t = 0;
+                try{
+                    if(dept.getLeft()!=null&&!dept.getLeft().equals("")){
+                        l = Integer.parseInt(dept.getLeft());
+                    }
+                    if(dept.getTop()!=null&&!dept.getTop().equals("")){
+                        t = Integer.parseInt(dept.getTop());
+                    }
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+                plan.setCoorl(l);
+                plan.setCoort(t);
                 list1.add(plan);
             }
         }
@@ -362,6 +376,21 @@ public class EditMapPresenter implements EditMapContract.Presenter {
                 if (sysDept.getCuuid() == dept.getCid()) {
                     NodeModel<String> addNode = new NodeModel<>(dept.getOrgname());
                     addNode.setCuuid(dept.getCuuid());
+                    int l = 0;
+                    int t = 0;
+                    try{
+                        if(dept.getLeft()!=null&&!dept.getLeft().equals("")){
+                            l = Integer.parseInt(dept.getLeft());
+                        }
+                        if(dept.getTop()!=null&&!dept.getTop().equals("")){
+                            t = Integer.parseInt(dept.getTop());
+                        }
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
+                    addNode.setCoorl(l);
+                    addNode.setCoort(t);
+
                     mTreeModel.addNode(sysDept, addNode);
                 }
             }

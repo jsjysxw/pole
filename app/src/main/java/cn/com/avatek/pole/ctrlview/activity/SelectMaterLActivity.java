@@ -42,7 +42,7 @@ import okhttp3.Call;
 /**
  * Created by User on
  */
-public class SelectMaterLActivity extends BaseActivity implements AlertDia1Fragment.ConfirmListener{
+public class SelectMaterLActivity extends BaseActivity implements AlertDia1Fragment.ConfirmListener {
 
     private TitleBarView title_bar;
     private RecyclerView mRecyclerView;
@@ -51,9 +51,9 @@ public class SelectMaterLActivity extends BaseActivity implements AlertDia1Fragm
     private List<MaterBean> contBeanList = new ArrayList<>();
     private List<MaterBean> saveBeanList = new ArrayList<>();
 
-    private RelativeLayout rl_cl,rl_clz;
-    private TextView tv_cl,tv_clz;
-    private View v_cl,v_clz;
+    private RelativeLayout rl_cl, rl_clz;
+    private TextView tv_cl, tv_clz;
+    private View v_cl, v_clz;
 
 
     @Override
@@ -84,20 +84,20 @@ public class SelectMaterLActivity extends BaseActivity implements AlertDia1Fragm
 
         String consumable = "";
         Intent intent = getIntent();
-        if(intent!=null){
+        if (intent != null) {
             consumable = intent.getStringExtra("cl");
         }
-        if(consumable!=null&&!consumable.equals("")){
-            String [] strings = consumable.split(";");
-            if(strings.length>0){
-                for (int i= 0;i<strings.length;i++){
+        if (consumable != null && !consumable.equals("")) {
+            String[] strings = consumable.split(";");
+            if (strings.length > 0) {
+                for (int i = 0; i < strings.length; i++) {
                     String str = strings[i];
-                    if(str!=null&&!str.equals("")){
-                        String [] strs = str.split(":");
-                        if(strs.length==2){
+                    if (str != null && !str.equals("")) {
+                        String[] strs = str.split(":");
+                        if (strs.length == 2) {
                             MaterBean c = new MaterBean();
                             c.setId(strs[0]);
-                            c.setNum(Integer.parseInt( strs[1]));
+                            c.setNum(Integer.parseInt(strs[1]));
                             saveBeanList.add(c);
                         }
                     }
@@ -106,22 +106,21 @@ public class SelectMaterLActivity extends BaseActivity implements AlertDia1Fragm
         }
     }
 
-    private void setFinish()
-    {
+    private void setFinish() {
         String str = "";
-        for (MaterBean c:saveBeanList){
-            if(c.getNum()>0){
-                if(str.equals("")){
-                    str = c.getId()+":"+c.getNum();
-                }else {
-                    str += ";"+c.getId()+":"+c.getNum();
+        for (MaterBean c : saveBeanList) {
+            if (c.getNum() > 0) {
+                if (str.equals("")) {
+                    str = c.getId() + ":" + c.getNum();
+                } else {
+                    str += ";" + c.getId() + ":" + c.getNum();
                 }
             }
         }
 
         Intent intent1 = new Intent();
-        intent1.putExtra("cl",str);
-        setResult(22,intent1);
+        intent1.putExtra("cl", str);
+        setResult(22, intent1);
         finish();
     }
 
@@ -156,8 +155,7 @@ public class SelectMaterLActivity extends BaseActivity implements AlertDia1Fragm
         });
 
 
-
-        mRecyclerView = (RecyclerView)findViewById(R.id.recyclerView);
+        mRecyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         //创建默认的线性LayoutManager
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
@@ -169,9 +167,9 @@ public class SelectMaterLActivity extends BaseActivity implements AlertDia1Fragm
         mAdapter.setOnItemClickListener(new MaterAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                if("1".equals(contBeanList.get(position).getType())){
+                if ("0".equals(contBeanList.get(position).getType())) {
                     initWeb(contBeanList.get(position).getId());
-                }else {
+                } else {
                     Bundle data = new Bundle();
                     data.putInt("position", position);
                     AlertDia1Fragment dialog1 = new AlertDia1Fragment();
@@ -183,7 +181,7 @@ public class SelectMaterLActivity extends BaseActivity implements AlertDia1Fragm
             }
         });
         mRecyclerView.setAdapter(mAdapter);
-        RefreshLayout refreshLayout = (RefreshLayout)findViewById(R.id.refreshLayout);
+        RefreshLayout refreshLayout = (RefreshLayout) findViewById(R.id.refreshLayout);
         refreshLayout.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh(RefreshLayout refreshlayout) {
@@ -198,24 +196,24 @@ public class SelectMaterLActivity extends BaseActivity implements AlertDia1Fragm
         });
     }
 
-    //-2为材料-3为材料组
-    private void initWeb(final String type) {
+    //
+    private void initWeb(final String iscl) {
 
         dealPre();
 
         String pid = "-1";
-        if(!type.equals("cl")&&!type.equals("clz")){
-            pid = type;
+        if (!iscl.equals("cl") && !iscl.equals("clz")) {
+            pid = iscl;
         }
         dialog = AvatekDialog.createLoadingDialog(SelectMaterLActivity.this, "登录中...");
         dialog.show();
         Map<String, String> params = new HashMap<>();
         params.put("user_id", SvaApplication.getInstance().getLoginUser().getUser_id());
-        params.put("pid",pid);
+        params.put("pid", pid);
         NetManager.sendPost(ApiAddress.material_group_list, params, new NetCallBack() {
             @Override
             public void onError(String error, Call call) {
-                if(dialog!=null&&dialog.isShowing()){
+                if (dialog != null && dialog.isShowing()) {
                     dialog.dismiss();
                 }
                 HLog.e("webnet", "response=" + error);
@@ -224,10 +222,10 @@ public class SelectMaterLActivity extends BaseActivity implements AlertDia1Fragm
             @Override
             public void onSuccess(String response) {
                 HLog.e("webnet", "response=" + response);
-                if(dialog!=null&&dialog.isShowing()){
+                if (dialog != null && dialog.isShowing()) {
                     dialog.dismiss();
                 }
-                if(contBeanList!=null){
+                if (contBeanList != null) {
                     contBeanList.clear();
                 }
                 Gson gson = new Gson();
@@ -235,49 +233,27 @@ public class SelectMaterLActivity extends BaseActivity implements AlertDia1Fragm
 
                 if (listResult != null && listResult.getContent() != null) {
 
-                    if(type.equals("clz")) {
-                        if(listResult.getContent().getGroup()!=null) {
-                            for (MaterLResult.ContentBean.GroupBean g :listResult.getContent().getGroup()){
-//                                int a = 0;
-//                                for (MaterBean b :saveBeanList)
-//                                {
-//                                    if(b.getId().equals(g.getGroup_id())){
-//                                        a++;
-//                                    }
-//                                }
-
-                                    MaterBean materBean = new MaterBean();
-                                    materBean.setId(g.getGroup_id());
-                                    materBean.setName(g.getName());
-                                    materBean.setNum(0);
-                                    materBean.setType("0");
-                                    contBeanList.add(materBean);
-
-
-
+                    if (iscl.equals("clz")) {
+                        if (listResult.getContent().getGroup() != null) {
+                            for (MaterLResult.ContentBean.GroupBean g : listResult.getContent().getGroup()) {
+                                MaterBean materBean = new MaterBean();
+                                materBean.setId(g.getGroup_id());
+                                materBean.setName(g.getName());
+                                materBean.setNum(0);
+                                materBean.setType("1");
+                                contBeanList.add(materBean);
                             }
                             mAdapter.notifyDataSetChanged();
                         }
-                    }else {
-                        if(listResult.getContent().getGroup()!=null) {
-                            for (MaterLResult.ContentBean.MaterialBean g :listResult.getContent().getMaterial()){
-//                                int d = 0;
-//                                for (MaterBean b :saveBeanList)
-//                                {
-//                                    if(b.getId().equals(g.getMaterial_id())){
-//                                        d++;
-//                                    }
-//                                }
-
-                                    MaterBean materBean = new MaterBean();
-                                    materBean.setId(g.getMaterial_id());
-                                    materBean.setName(g.getName());
-                                    materBean.setNum(0);
+                    } else {
+                        if (listResult.getContent().getGroup() != null) {
+                            for (MaterLResult.ContentBean.MaterialBean g : listResult.getContent().getMaterial()) {
+                                MaterBean materBean = new MaterBean();
+                                materBean.setId(g.getMaterial_id());
+                                materBean.setName(g.getName());
+                                materBean.setNum(0);
                                 materBean.setType(g.getType_id());
-                                    contBeanList.add(materBean);
-
-
-
+                                contBeanList.add(materBean);
                             }
                             mAdapter.notifyDataSetChanged();
                         }
@@ -291,7 +267,7 @@ public class SelectMaterLActivity extends BaseActivity implements AlertDia1Fragm
 
     @Override
     public void onConfirmComplete(String next, int info) {
-        if(!next.equals("")){
+        if (!next.equals("")) {
             contBeanList.get(info).setNum(Integer.parseInt(next));
             mAdapter.notifyDataSetChanged();
         }
@@ -302,18 +278,17 @@ public class SelectMaterLActivity extends BaseActivity implements AlertDia1Fragm
      * 1。将与保存的相同的数据num替换掉
      * 2。将显示的lis中tnum不为0的加入
      */
-    private void dealPre(){
+    private void dealPre() {
 
-        for (MaterBean b :contBeanList)
-        {
+        for (MaterBean b : contBeanList) {
             int d = 0;
-            for (MaterBean g :saveBeanList) {
+            for (MaterBean g : saveBeanList) {
                 if (b.getId().equals(g.getId())) {
                     g.setNum(b.getNum());
                     d++;
                 }
             }
-            if(d==0&&b.getNum()>0){
+            if (d == 0 && b.getNum() > 0) {
                 saveBeanList.add(b);
             }
         }
@@ -322,12 +297,10 @@ public class SelectMaterLActivity extends BaseActivity implements AlertDia1Fragm
     /**
      * 更换列表之前，操作显示list
      * 1。将savelist中相同id的num数据更新到显示列表上去
-     *
      */
-    private void dealAfter(){
-        for (MaterBean b :contBeanList)
-        {
-            for (MaterBean g :saveBeanList) {
+    private void dealAfter() {
+        for (MaterBean b : contBeanList) {
+            for (MaterBean g : saveBeanList) {
                 if (b.getId().equals(g.getId())) {
                     b.setNum(g.getNum());
                 }

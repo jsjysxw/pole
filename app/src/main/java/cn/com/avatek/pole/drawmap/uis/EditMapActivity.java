@@ -46,6 +46,7 @@ import cn.com.avatek.pole.drawmap.views.RightTreeLayoutManager;
 import cn.com.avatek.pole.drawmap.views.TreeView;
 import cn.com.avatek.pole.drawmap.views.TreeViewItemClick;
 import cn.com.avatek.pole.drawmap.views.TreeViewItemLongClick;
+import cn.com.avatek.pole.entity.PlistResult;
 import cn.com.avatek.pole.entity.PointResult;
 import cn.com.avatek.pole.entity.SimpleResult;
 import cn.com.avatek.pole.manage.NetCallBack;
@@ -111,7 +112,6 @@ public class EditMapActivity extends BaseActivity implements EditMapContract.Vie
             @Override
             public void onClick(View view) {
                 savePointxy();
-                subWeb();
             }
         });
     }
@@ -393,7 +393,6 @@ public class EditMapActivity extends BaseActivity implements EditMapContract.Vie
                                 //退出文件
 //                                clearDialog(saveFileDialog);
                                 savePointxy();
-                                subWeb();
 
 
                             }
@@ -465,7 +464,7 @@ public class EditMapActivity extends BaseActivity implements EditMapContract.Vie
         super.onDestroy();
     }
 
-    List<PointResult.ContentBean> contentBeanList = new ArrayList<>();
+    List<PlistResult> contentBeanList = new ArrayList<>();
 
     private void savePointxy() {
         contentBeanList.clear();
@@ -473,26 +472,25 @@ public class EditMapActivity extends BaseActivity implements EditMapContract.Vie
         if (mTreemodel != null) {
             NodeModel<String> nodeModel = mTreemodel.getRootNode();
             if (nodeModel != null && nodeModel.getValue() != null) {
-                PointResult.ContentBean bean = new PointResult.ContentBean();
+                PlistResult bean = new PlistResult();
                 bean.setPoint_id(String.valueOf(nodeModel.getCuuid()));
-                bean.setLine_id(line_id);
-                bean.setLeft(nodeModel.getCoorl());
-                bean.setTop(nodeModel.getCoort());
+                bean.setX(String.valueOf(nodeModel.getCoort()));
+                bean.setY(String.valueOf(nodeModel.getCoorl()));
                 contentBeanList.add(bean);
             }
             getChildrens(nodeModel);
         }
+        subWeb();
     }
 
     private void getChildrens(NodeModel<String> node) {
         if (node != null && node.getChildNodes() != null && node.getChildNodes().size() > 0) {
             for (NodeModel<String> nodem : node.getChildNodes()) {
                 if (nodem != null && nodem.getValue() != null) {
-                    PointResult.ContentBean bean = new PointResult.ContentBean();
+                    PlistResult bean = new PlistResult();
                     bean.setPoint_id(String.valueOf(nodem.getCuuid()));
-                    bean.setLine_id(line_id);
-                    bean.setLeft(nodem.getCoorl());
-                    bean.setTop(nodem.getCoort());
+                    bean.setX(String.valueOf(nodem.getCoort()));
+                    bean.setY(String.valueOf(nodem.getCoorl()));
                     contentBeanList.add(bean);
                 }
                 getChildrens(nodem);
@@ -503,38 +501,36 @@ public class EditMapActivity extends BaseActivity implements EditMapContract.Vie
 
     private void subWeb(){
         if(contentBeanList!=null&&contentBeanList.size()>0){
-//            Map<String, String> params = new HashMap<>();
-//            params.put("update_points", (new Gson()).toJson(contentBeanList));
-//            NetManager.sendPost(ApiAddress.point_update, params, new NetCallBack() {
-//                @Override
-//                public void onError(String error, Call call) {
-//
-//
-//                    Toast.makeText(EditMapActivity.this, "获取失败",
-//                            Toast.LENGTH_SHORT).show();
-//                }
-//
-//                @Override
-//                public void onSuccess(String response) {
-//                    HLog.e("webnet","response="+response);
-//                    try {
-//                        Gson gson  = new Gson();
-//                        SimpleResult webResult = gson.fromJson(response, SimpleResult.class);
-//                        if(webResult.getState()>0){
-//                            EditMapActivity.this.finish();
-//                            Toast.makeText(EditMapActivity.this, "坐标更新成功", Toast.LENGTH_SHORT).show();
-//                        }else {
-//                            Toast.makeText(EditMapActivity.this, "坐标更新失败", Toast.LENGTH_SHORT).show();
-//                        }
-//                    } catch (Exception e) {
-//                        e.printStackTrace();
-//                        Toast.makeText(EditMapActivity.this, "解析出错", Toast.LENGTH_SHORT).show();
-//                    }
-//
-//
-//
-//                }
-//            });
+            Map<String, String> params = new HashMap<>();
+            params.put("points", (new Gson()).toJson(contentBeanList));
+            NetManager.sendPost(ApiAddress.point_update, params, new NetCallBack() {
+                @Override
+                public void onError(String error, Call call) {
+                    Toast.makeText(EditMapActivity.this, "获取失败",
+                            Toast.LENGTH_SHORT).show();
+                }
+
+                @Override
+                public void onSuccess(String response) {
+                    HLog.e("webnet","response="+response);
+                    try {
+                        Gson gson  = new Gson();
+                        SimpleResult webResult = gson.fromJson(response, SimpleResult.class);
+                        if(webResult.getState()>0){
+                            EditMapActivity.this.finish();
+                            Toast.makeText(EditMapActivity.this, "坐标更新成功", Toast.LENGTH_SHORT).show();
+                        }else {
+                            Toast.makeText(EditMapActivity.this, "坐标更新失败", Toast.LENGTH_SHORT).show();
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        Toast.makeText(EditMapActivity.this, "解析出错", Toast.LENGTH_SHORT).show();
+                    }
+
+
+
+                }
+            });
         }
 
 

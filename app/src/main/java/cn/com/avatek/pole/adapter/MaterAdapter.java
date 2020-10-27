@@ -42,7 +42,7 @@ public class MaterAdapter extends RecyclerView.Adapter<MaterAdapter.ViewHolder> 
         if(contBeanList.get(position).getNum()>0) {
             viewHolder.tv_con1.setText(contBeanList.get(position).getNum()+"");
         }else {
-            if("1".equals(contBeanList.get(position).getType())){
+            if("0".equals(contBeanList.get(position).getType())){
                 viewHolder.tv_con1.setText(">");
             }else {
                 viewHolder.tv_con1.setText("点击输入数量");
