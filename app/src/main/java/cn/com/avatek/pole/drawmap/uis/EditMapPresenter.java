@@ -346,7 +346,7 @@ public class EditMapPresenter implements EditMapContract.Presenter {
         List<NodeModel<String>> list1 = new ArrayList<>();
         for (OrgBean dept : orgBeanList) {
             if (dept.getCid() == -1) {
-                NodeModel<String> plan = new NodeModel<>(dept.getOrgname().substring(0,2));
+                NodeModel<String> plan = new NodeModel<>(dept.getOrgname().length()>2?dept.getOrgname().substring(0,3):dept.getOrgname());
                 mTreeModel = new TreeModel<>(plan);
                 plan.setCuuid(dept.getCuuid());
                 int l = 0;
@@ -374,7 +374,7 @@ public class EditMapPresenter implements EditMapContract.Presenter {
         for (NodeModel<String> sysDept : sysDepts) {
             for (OrgBean dept : depts) {
                 if (sysDept.getCuuid() == dept.getCid()) {
-                    NodeModel<String> addNode = new NodeModel<>(dept.getOrgname().substring(0,2));
+                    NodeModel<String> addNode = new NodeModel<>(dept.getOrgname().length()>2?dept.getOrgname().substring(0,3):dept.getOrgname());
                     addNode.setCuuid(dept.getCuuid());
                     int l = 0;
                     int t = 0;
