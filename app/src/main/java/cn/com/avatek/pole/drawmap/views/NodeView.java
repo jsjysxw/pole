@@ -35,7 +35,7 @@ public class NodeView extends TextView {
     public NodeView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
 
-        setTextColor(Color.WHITE);
+        setTextColor(Color.BLACK);
         setPadding(10, 10, 10, 10);
 
         Drawable drawable = context.getResources().getDrawable(R.drawable.node_view_bg);

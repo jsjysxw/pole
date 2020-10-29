@@ -168,7 +168,7 @@ public class EditMapActivity extends BaseActivity implements EditMapContract.Vie
         editMapTreeView.setTreeViewItemClick(new TreeViewItemClick() {
             @Override
             public void onItemClick(View item) {
-                mEditMapPresenter.editNote();
+//                mEditMapPresenter.editNote();
             }
         });
 

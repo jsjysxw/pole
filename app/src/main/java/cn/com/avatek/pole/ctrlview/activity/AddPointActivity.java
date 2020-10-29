@@ -139,15 +139,15 @@ public class AddPointActivity extends BaseActivity implements View.OnClickListen
             return;
         }
 
-        if ("".equals(coorx.getText().toString())) {
-            Toast.makeText(getApplicationContext(), "请填写x坐标", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        if ("".equals(coory.getText().toString())) {
-            Toast.makeText(getApplicationContext(), "请填写y坐标", Toast.LENGTH_SHORT).show();
-            return;
-        }
+//        if ("".equals(coorx.getText().toString())) {
+//            Toast.makeText(getApplicationContext(), "请填写x坐标", Toast.LENGTH_SHORT).show();
+//            return;
+//        }
+//
+//        if ("".equals(coory.getText().toString())) {
+//            Toast.makeText(getApplicationContext(), "请填写y坐标", Toast.LENGTH_SHORT).show();
+//            return;
+//        }
 
         if ("".equals(rematks.getText().toString())) {
             Toast.makeText(getApplicationContext(), "请填写备注", Toast.LENGTH_SHORT).show();
@@ -169,8 +169,8 @@ public class AddPointActivity extends BaseActivity implements View.OnClickListen
         params.put("user_id", SvaApplication.getInstance().getLoginUser().getUser_id());
         params.put("num", num.getText().toString());
         params.put("dist", dist.getText().toString());
-        params.put("coorx", coorx.getText().toString());
-        params.put("coory", coory.getText().toString());
+//        params.put("x", coorx.getText().toString());
+//        params.put("y", coory.getText().toString());
         params.put("rematks", rematks.getText().toString());
         params.put("cross", cross.getText().toString());
         params.put("voltage", voltage.getText().toString());

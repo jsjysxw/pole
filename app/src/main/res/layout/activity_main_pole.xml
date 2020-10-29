@@ -123,7 +123,7 @@
                     android:id="@+id/tv2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="已完成"
+                    android:text="全部"
                     android:textSize="@dimen/textsize_16"
                     android:layout_marginTop="@dimen/margin_3"
                     android:textColor="@color/gray1"/>
