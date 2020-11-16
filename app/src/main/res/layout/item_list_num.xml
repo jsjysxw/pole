@@ -12,10 +12,11 @@
                     android:id="@+id/tv_title1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="中外历史文人"
+                    android:text="中外历史文人中外历史文人中外历史文人中外历史文人中外历史文人中外历史文人"
                     android:textSize="15sp"
-                    android:singleLine="true"
-                    android:maxWidth="150dp"
+                   android:maxLines="2"
+                    android:layout_marginRight="120dp"
+                    android:layout_centerVertical="true"
                     android:ellipsize="end"
 
                     />
@@ -25,6 +26,7 @@
                     android:layout_height="wrap_content"
                     android:text="点击输入数量"
                     android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
                     android:textSize="15sp"
                     android:textColor="@color/darkgray"
                     />

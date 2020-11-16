@@ -2,6 +2,7 @@ package cn.com.avatek.pole.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,7 +38,7 @@ public class MaterAdapter extends RecyclerView.Adapter<MaterAdapter.ViewHolder> 
 
     //将数据与界面进行绑定的操作
     @Override
-    public void onBindViewHolder(ViewHolder viewHolder, final int position) {
+    public void onBindViewHolder(final ViewHolder viewHolder,int position) {
         viewHolder.mTextView.setText(contBeanList.get(position).getName());
         if(contBeanList.get(position).getNum()>0) {
             viewHolder.tv_con1.setText(contBeanList.get(position).getNum()+"");
@@ -52,10 +53,10 @@ public class MaterAdapter extends RecyclerView.Adapter<MaterAdapter.ViewHolder> 
 //            Glide.with(context).load(contBeanList.get(position).getPic_url()).into(viewHolder.iv1);
 
         if (mOnItemClickListener != null) {
-            view.setOnClickListener(new View.OnClickListener() {
+            viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    mOnItemClickListener.onItemClick(view, position);
+                    mOnItemClickListener.onItemClick(view, viewHolder.getAdapterPosition());
                 }
             });
         }

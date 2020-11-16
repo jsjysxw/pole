@@ -112,18 +112,32 @@ public class NodeView extends TextView {
                         b = t+height;
                         //不划出边界判断,此处应按照项目实际情况,因为本项目需求移动的位置是手机全屏,
                         // 所以才能这么写,如果是固定区域,要得到父控件的宽高位置后再做处理
+//                        if(l<0){
+//                            l=0;
+//                            r=l+width;
+//                        }else if(r>screenWidth){
+//                            r=screenWidth;
+//                            l=r-width;
+//                        }
+//                        if(t<0){
+//                            t=0;
+//                            b=t+height;
+//                        }else if(b>screenHeight){
+//                            b=screenHeight;
+//                            t=b-height;
+//                        }
                         if(l<0){
                             l=0;
                             r=l+width;
-                        }else if(r>screenWidth){
-                            r=screenWidth;
+                        }else if(r>2000){
+                            r=2000;
                             l=r-width;
                         }
                         if(t<0){
                             t=0;
                             b=t+height;
-                        }else if(b>screenHeight){
-                            b=screenHeight;
+                        }else if(b>2000){
+                            b=2000;
                             t=b-height;
                         }
                         Log.e("ACTION_MOVE","l="+l+",t="+t+",r="+r+",b="+b);
