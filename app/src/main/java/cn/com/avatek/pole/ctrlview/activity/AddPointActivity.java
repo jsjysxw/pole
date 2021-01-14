@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
@@ -31,6 +32,7 @@ import cn.com.avatek.pole.constant.ApiAddress;
 import cn.com.avatek.pole.ctrlview.customview.TitleBarView;
 import cn.com.avatek.pole.entity.ContBean;
 import cn.com.avatek.pole.entity.ListResult;
+import cn.com.avatek.pole.entity.MaterBean;
 import cn.com.avatek.pole.entity.SimpleResult;
 import cn.com.avatek.pole.manage.NetCallBack;
 import cn.com.avatek.pole.manage.NetManager;
@@ -65,6 +67,8 @@ public class AddPointActivity extends BaseActivity implements View.OnClickListen
 
     private String p_id = "";
     private String l_id = "";
+
+    private TextView mlist;
 
 
     @Override
@@ -118,13 +122,14 @@ public class AddPointActivity extends BaseActivity implements View.OnClickListen
         pid = (TextView) findViewById(R.id.pid);
         line_id = (TextView) findViewById(R.id.line_id);
         materials = (TextView) findViewById(R.id.materials);
+        mlist = (TextView) findViewById(R.id.mlist);
 
         line_id.setText("线路ID："+l_id);
-        if(p_id!=null&&!p_id.equals("")){
-            pid.setText("父节点ID："+p_id);
-        }else {
-            pid.setText("父节点：self");
-        }
+//        if(p_id!=null&&!p_id.equals("")){
+//            pid.setText("父节点ID："+p_id);
+//        }else {
+//            pid.setText("父节点：self");
+//        }
 
     }
 
@@ -149,10 +154,10 @@ public class AddPointActivity extends BaseActivity implements View.OnClickListen
 //            return;
 //        }
 
-        if ("".equals(rematks.getText().toString())) {
-            Toast.makeText(getApplicationContext(), "请填写备注", Toast.LENGTH_SHORT).show();
-            return;
-        }
+//        if ("".equals(rematks.getText().toString())) {
+//            Toast.makeText(getApplicationContext(), "请填写备注", Toast.LENGTH_SHORT).show();
+//            return;
+//        }
 
         if ("".equals(materials.getText().toString())||"请选择".equals(materials.getText().toString())) {
             Toast.makeText(getApplicationContext(), "请选择材料", Toast.LENGTH_SHORT).show();
@@ -210,6 +215,7 @@ public class AddPointActivity extends BaseActivity implements View.OnClickListen
         List<String> sList = new ArrayList<String>();
         switch (view.getId()){
             case R.id.cross:
+                sList.add("无");
                 sList.add("河流");
                 sList.add("光纤");
                 sList.add("电力线路");
@@ -239,6 +245,9 @@ public class AddPointActivity extends BaseActivity implements View.OnClickListen
                 Intent intent = new Intent(AddPointActivity.this,SelectMaterLActivity.class);
                 if(!materials.getText().toString().trim().equals("")&&!materials.getText().toString().trim().equals("请选择")){
                     intent.putExtra("cl",materials.getText().toString().trim());
+                }
+                if(melist!=null&&melist.size()>0){
+                    intent.putExtra("saveBeanList",new Gson().toJson(melist));
                 }
                 startActivityForResult(intent,11);
                 break;
@@ -324,8 +333,24 @@ public class AddPointActivity extends BaseActivity implements View.OnClickListen
         if(requestCode==11&&resultCode==22){
             if(data!=null){
                 String str = data.getStringExtra("cl");
+                String str1 = data.getStringExtra("saveBeanList");
+                melist =new Gson().fromJson(str1, new TypeToken<List<MaterBean>>() {}.getType());
                 materials.setText(str);
+                initList(melist);
             }
         }
+    }
+
+    private List<MaterBean> melist;
+    private void initList(List<MaterBean> beanList){
+        if(beanList!=null&&beanList.size()>0){
+            mlist.setVisibility(View.VISIBLE);
+            String str = "已选材料列表：\n";
+            for (int i =0;i<beanList.size();i++){
+                str += beanList.get(i).getName()+":"+beanList.get(i).getNum()+"\n";
+            }
+            mlist.setText(str);
+        }else
+            mlist.setVisibility(View.GONE);
     }
 }

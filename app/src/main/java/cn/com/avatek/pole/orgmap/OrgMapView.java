@@ -1056,7 +1056,7 @@ public class OrgMapView extends View {
             }
             float sY = totalHeight + data.getCurrentLine() * itemMarginV + screenTools.dp2px(32);
 
-            if ((x > sX && x < sX + itemWidth && y > sY && y < sY + contentMaxHeigth4line[data.getCurrentLine()])) {
+            if (contentMaxHeigth4line!=null&&contentMaxHeigth4line.length>0&&(x > sX && x < sX + itemWidth && y > sY && y < sY + contentMaxHeigth4line[data.getCurrentLine()])) {
                 /*点击点 为非空白区域， 重置所有数据为非选中状态， 然后标记当前项为选中状态*/
                 /*如果有选中 则将原数据重置为非选中*/
                 paraseResetItems(this.data);

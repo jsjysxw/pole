@@ -5,12 +5,15 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
@@ -50,10 +53,12 @@ public class SelectMaterLActivity extends BaseActivity implements AlertDia1Fragm
     private MaterAdapter mAdapter;
     private List<MaterBean> contBeanList = new ArrayList<>();
     private List<MaterBean> saveBeanList = new ArrayList<>();
-
+    private List<MaterBean> sBeanList;
     private RelativeLayout rl_cl, rl_clz;
     private TextView tv_cl, tv_clz;
     private View v_cl, v_clz;
+
+    private List<String> oldIscl = new ArrayList<>();
 
 
     @Override
@@ -69,6 +74,18 @@ public class SelectMaterLActivity extends BaseActivity implements AlertDia1Fragm
         getIntData();
         title_bar = (TitleBarView) findViewById(R.id.title_bar);
         title_bar.setActivity(SelectMaterLActivity.this);
+        title_bar.getBtnBack().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(!flag1&&oldIscl.size()>1){
+                    initWeb(oldIscl.get(oldIscl.size()-2));
+                    oldIscl.remove(oldIscl.size()-1);
+                    oldIscl.remove(oldIscl.size()-1);
+                }else {
+                    finish();
+                }
+            }
+        });
         title_bar.getBtnSubmit().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -86,6 +103,8 @@ public class SelectMaterLActivity extends BaseActivity implements AlertDia1Fragm
         Intent intent = getIntent();
         if (intent != null) {
             consumable = intent.getStringExtra("cl");
+            String str11 = intent.getStringExtra("saveBeanList");
+            sBeanList =new Gson().fromJson(str11, new TypeToken<List<MaterBean>>() {}.getType());
         }
         if (consumable != null && !consumable.equals("")) {
             String[] strings = consumable.split(";");
@@ -100,6 +119,16 @@ public class SelectMaterLActivity extends BaseActivity implements AlertDia1Fragm
                             c.setNum(Integer.parseInt(strs[1]));
                             saveBeanList.add(c);
                         }
+                    }
+                }
+            }
+        }
+
+        if(sBeanList!=null&&sBeanList.size()>0){
+            for (int i =0;i<sBeanList.size();i++){
+                for (int j =0;j<saveBeanList.size();j++){
+                    if(sBeanList.get(i).getId().equals(saveBeanList.get(j).getId())){
+                        saveBeanList.get(j).setName(sBeanList.get(i).getName());
                     }
                 }
             }
@@ -120,6 +149,7 @@ public class SelectMaterLActivity extends BaseActivity implements AlertDia1Fragm
 
         Intent intent1 = new Intent();
         intent1.putExtra("cl", str);
+        intent1.putExtra("saveBeanList",new Gson().toJson(saveBeanList));
         setResult(22, intent1);
         finish();
     }
@@ -199,8 +229,15 @@ public class SelectMaterLActivity extends BaseActivity implements AlertDia1Fragm
     //
     private void initWeb(final String iscl) {
 
+
         dealPre();
 
+        if("clz".equals(iscl)){
+            flag1 =true;
+        }else {
+            flag1 = false;
+        }
+        setOldIscl(iscl);
         String pid = "-1";
         if (!iscl.equals("cl") && !iscl.equals("clz")) {
             pid = iscl;
@@ -307,4 +344,31 @@ public class SelectMaterLActivity extends BaseActivity implements AlertDia1Fragm
             }
         }
     }
+
+
+    private void setOldIscl(String iscl){
+        oldIscl.add(iscl);
+        if(flag1){
+            oldIscl.clear();
+        }
+    }
+
+    private boolean flag1 = false;
+    // 第一种
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+
+// 按下键盘上返回按钮
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            if(oldIscl.size()>1){
+                initWeb(oldIscl.get(oldIscl.size()-2));
+            }else {
+                finish();
+            }
+
+            return true;
+        } else {
+            return super.onKeyDown(keyCode, event);
+        }
+    }
+
 }

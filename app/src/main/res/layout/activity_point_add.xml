@@ -109,7 +109,7 @@
                         style="@style/mtask_et"
                         android:background="@drawable/btn_et"
                         android:drawableRight="@drawable/xiala"
-                        android:text="河流" />
+                        android:text="无" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -150,7 +150,9 @@
                     style="@style/mtask_ll"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
-                    android:layout_marginTop="5dp">
+                    android:layout_marginTop="5dp"
+                    android:visibility="gone"
+                    >
 
                     <TextView
                         style="@style/mtask_textview"
@@ -165,7 +167,9 @@
                     style="@style/mtask_ll"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
-                    android:layout_marginTop="5dp">
+                    android:layout_marginTop="5dp"
+                    android:visibility="gone"
+                    >
 
                     <TextView
                         style="@style/mtask_textview"
@@ -209,8 +213,22 @@
                         android:drawableRight="@drawable/xiala"
                         android:text="请选择" />
                 </LinearLayout>
+                <LinearLayout
+                    style="@style/mtask_ll"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="5dp">
 
+                    <TextView
+                        android:visibility="gone"
+                        android:id="@+id/mlist"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:text="材料\n" />
+                </LinearLayout>
             </LinearLayout>
+
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

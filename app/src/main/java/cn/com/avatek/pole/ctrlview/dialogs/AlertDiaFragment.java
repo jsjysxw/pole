@@ -82,11 +82,11 @@ public class AlertDiaFragment extends DialogFragment implements View.OnClickList
 //                    Toast.makeText(context, "标题=" + title + "内容=" + content,
 //                            Toast.LENGTH_SHORT).show();
                     // 这里使用了回调确定后执行的事情
-                    if(et1.getText().toString().length()<1){
-                        Toast.makeText(context, "路线编号不能为空",
-                            Toast.LENGTH_SHORT).show();
-                        return;
-                    }
+//                    if(et1.getText().toString().length()<1){
+//                        Toast.makeText(context, "路线编号不能为空",
+//                            Toast.LENGTH_SHORT).show();
+//                        return;
+//                    }
                     if(et2.getText().toString().length()<1){
                         Toast.makeText(context, "路线名称不能为空",
                                 Toast.LENGTH_SHORT).show();
