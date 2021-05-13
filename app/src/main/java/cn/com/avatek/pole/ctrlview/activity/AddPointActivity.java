@@ -140,7 +140,7 @@ public class AddPointActivity extends BaseActivity implements View.OnClickListen
         }
 
         if ("".equals(dist.getText().toString())) {
-            Toast.makeText(getApplicationContext(), "请填写距离", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "请填写档距", Toast.LENGTH_SHORT).show();
             return;
         }
 

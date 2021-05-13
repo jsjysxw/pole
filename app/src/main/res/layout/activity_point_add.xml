@@ -56,7 +56,7 @@
 
                     <TextView
                         style="@style/mtask_textview"
-                        android:text="距离" />
+                        android:text="档距" />
 
                     <EditText
                         android:id="@+id/dist"

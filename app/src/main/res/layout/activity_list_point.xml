@@ -45,7 +45,7 @@
             android:layout_centerVertical="true"
            android:padding="5dp"
             android:layout_toLeftOf="@+id/tv_bar_del"
-            android:text="切换"
+            android:text="路径编辑"
             android:textColor="@color/white"
             />
     </RelativeLayout>

@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.widget.TextView;
 
@@ -36,7 +37,8 @@ public class NodeView extends TextView {
         super(context, attrs, defStyleAttr);
 
         setTextColor(Color.BLACK);
-        setPadding(10, 10, 10, 10);
+        setPadding(25, 25, 25, 25);
+        setTextSize(TypedValue.COMPLEX_UNIT_SP,18);
 
         Drawable drawable = context.getResources().getDrawable(R.drawable.node_view_bg);
         setBackgroundDrawable(drawable);
